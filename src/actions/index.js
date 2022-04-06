@@ -1,10 +1,16 @@
 import { API_KEY, API_URL } from "../constants/global";
+
 export const doFetch = async (path) => {
   let returnObj = {};
   let metaData = [];
   let ohlcData = [];
   let volumeData = [];
   const res = await fetch(`${API_URL}${path}&apikey=${API_KEY}`);
+
+  const toTimestamp = (strDate) => {
+    const dt = Date.parse(strDate);
+    return dt;
+  };
 
   if (res.ok) {
     let response = await res.json();
@@ -16,18 +22,21 @@ export const doFetch = async (path) => {
       response["Meta Data"]["4. Interval"]
     );
 
-    for (let key in response["Time Series (5min)"]) {
+    for (let key in response["Time Series (Daily)"]) {
       ohlcData.push([
-        key,
-        response["Time Series (5min)"][key]["1. open"],
-        response["Time Series (5min)"][key]["2. high"],
-        response["Time Series (5min)"][key]["3. low"],
-        response["Time Series (5min)"][key]["4. close"],
+        parseInt(toTimestamp(key)),
+        parseFloat(response["Time Series (Daily)"][key]["1. open"]),
+        parseFloat(response["Time Series (Daily)"][key]["2. high"]),
+        parseFloat(response["Time Series (Daily)"][key]["3. low"]),
+        parseFloat(response["Time Series (Daily)"][key]["4. close"]),
       ]);
 
-      volumeData.push([key, response["Time Series (5min)"][key]]);
+      volumeData.push([
+        toTimestamp(key),
+        parseInt(response["Time Series (Daily)"][key]["5. volume"]),
+      ]);
     }
-
+    console.log(ohlcData);
     returnObj["metaData"] = metaData;
     returnObj["ohlcData"] = ohlcData;
     returnObj["volumeData"] = volumeData;

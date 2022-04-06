@@ -1,28 +1,22 @@
+import MyStockChart from "./components/charts/MyStockChart";
+// import Highcharts from "highcharts/highstock";
 import { useApi } from "./hooks/useApi";
 import "./sass/global.scss";
 import "./sass/_normalize.scss";
+import "./sass/_highcharts.scss";
 
 function App() {
   const { data, isLoading, error } = useApi(
-    `function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min`
+    `function=TIME_SERIES_DAILY&symbol=IBM&outputsize=compact`
   );
-  // console.log(data);
-  // const timeSeries = !isLoading ? data["Time Series (5min)"] : "";
-  // const obj = data["Time Series (5min)"];
   console.log(data);
   return (
-    <div className="App">
+    <div>
       {isLoading && "Loading..."}
 
-      {error && <div>Error!</div>}
+      {error && <div>Oops! Data loading failed :(</div>}
 
-      {!isLoading &&
-        data !== null &&
-        data.ohlcData?.map((item, index) => (
-          <div>
-            <div>{item}</div>
-          </div>
-        ))}
+      {!isLoading && data !== null && <MyStockChart financialData={data} />}
     </div>
   );
 }
