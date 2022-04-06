@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useApi } from "./hooks/useApi";
+import "./sass/global.scss";
+import "./sass/_normalize.scss";
 
 function App() {
+  const { data, isLoading, error } = useApi(
+    `function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min`
+  );
+  // console.log(data);
+  // const timeSeries = !isLoading ? data["Time Series (5min)"] : "";
+  // const obj = data["Time Series (5min)"];
+  console.log(data);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isLoading && "Loading..."}
+
+      {error && <div>Error!</div>}
+
+      {!isLoading &&
+        data !== null &&
+        data.ohlcData?.map((item, index) => (
+          <div>
+            <div>{item}</div>
+          </div>
+        ))}
     </div>
   );
 }
