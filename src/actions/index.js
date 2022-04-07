@@ -16,27 +16,35 @@ export const doFetch = async (path) => {
     let response = await res.json();
 
     metaData.push(
-      response["Meta Data"]["3. Last Refreshed"],
+      response["Meta Data"]["1. Information"],
       response["Meta Data"]["2. Symbol"],
       response["Meta Data"]["3. Last Refreshed"],
       response["Meta Data"]["4. Interval"]
     );
 
-    for (let key in response["Time Series (Daily)"]) {
+    for (let key in response["Monthly Time Series"]) {
       ohlcData.push([
-        parseInt(toTimestamp(key)),
-        parseFloat(response["Time Series (Daily)"][key]["1. open"]),
-        parseFloat(response["Time Series (Daily)"][key]["2. high"]),
-        parseFloat(response["Time Series (Daily)"][key]["3. low"]),
-        parseFloat(response["Time Series (Daily)"][key]["4. close"]),
+        toTimestamp(key),
+        parseFloat(response["Monthly Time Series"][key]["1. open"]),
+        parseFloat(response["Monthly Time Series"][key]["2. high"]),
+        parseFloat(response["Monthly Time Series"][key]["3. low"]),
+        parseFloat(response["Monthly Time Series"][key]["4. close"]),
       ]);
 
       volumeData.push([
         toTimestamp(key),
-        parseInt(response["Time Series (Daily)"][key]["5. volume"]),
+        parseInt(response["Monthly Time Series"][key]["5. volume"]),
       ]);
     }
-    console.log(ohlcData);
+
+    ohlcData.sort(function (x, y) {
+      return x[0] - y[0];
+    });
+
+    volumeData.sort(function (x, y) {
+      return x[0] - y[0];
+    });
+
     returnObj["metaData"] = metaData;
     returnObj["ohlcData"] = ohlcData;
     returnObj["volumeData"] = volumeData;

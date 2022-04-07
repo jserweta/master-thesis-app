@@ -7,7 +7,7 @@ import "./sass/_highcharts.scss";
 
 function App() {
   const { data, isLoading, error } = useApi(
-    `function=TIME_SERIES_DAILY&symbol=IBM&outputsize=compact`
+    `function=TIME_SERIES_MONTHLY&symbol=IBM`
   );
   console.log(data);
   return (
