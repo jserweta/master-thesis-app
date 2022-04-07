@@ -22,18 +22,18 @@ export const doFetch = async (path) => {
       response["Meta Data"]["4. Interval"]
     );
 
-    for (let key in response["Monthly Time Series"]) {
+    for (let key in response["Time Series (Daily)"]) {
       ohlcData.push([
         toTimestamp(key),
-        parseFloat(response["Monthly Time Series"][key]["1. open"]),
-        parseFloat(response["Monthly Time Series"][key]["2. high"]),
-        parseFloat(response["Monthly Time Series"][key]["3. low"]),
-        parseFloat(response["Monthly Time Series"][key]["4. close"]),
+        parseFloat(response["Time Series (Daily)"][key]["1. open"]),
+        parseFloat(response["Time Series (Daily)"][key]["2. high"]),
+        parseFloat(response["Time Series (Daily)"][key]["3. low"]),
+        parseFloat(response["Time Series (Daily)"][key]["4. close"]),
       ]);
 
       volumeData.push([
         toTimestamp(key),
-        parseInt(response["Monthly Time Series"][key]["5. volume"]),
+        parseInt(response["Time Series (Daily)"][key]["5. volume"]),
       ]);
     }
 
