@@ -5,11 +5,11 @@ import Highcharts from "highcharts/highstock";
 import indicatorsAll from "highcharts/indicators/indicators-all";
 import annotationsAdvanced from "highcharts/modules/annotations-advanced";
 import priceIndicator from "highcharts/modules/price-indicator";
+import heikinashi from "highcharts/modules/heikinashi";
+import hollowcandlestick from "highcharts/modules/hollowcandlestick";
 import fullScreen from "highcharts/modules/full-screen";
 import exporting from "highcharts/modules/exporting";
 import stockTools from "highcharts/modules/stock-tools";
-import heikinashi from "highcharts/modules/heikinashi";
-import hollowcandlestick from "highcharts/modules/hollowcandlestick";
 
 import brandDark from "highcharts/themes/brand-dark";
 
@@ -26,9 +26,6 @@ stockTools(Highcharts);
 brandDark(Highcharts);
 
 const MyStockChart = ({ financialData }) => {
-  // const timezone = new Date().getTimezoneOffset();
-  // window.moment = moment;
-
   const currencyOptions = { style: "currency", currency: "USD" };
   const numberFormat = new Intl.NumberFormat("en-US", currencyOptions);
 
@@ -41,7 +38,6 @@ const MyStockChart = ({ financialData }) => {
   const stockChartOptions = {
     chart: {
       height: 600,
-      // styledMode: true,
     },
     title: {
       text: `${financialData.metaData[1]} Stock Price`,
@@ -201,12 +197,17 @@ const MyStockChart = ({ financialData }) => {
       ],
     },
   };
+  // const savedOptions = localStorage.getItem(["highcharts-chart"]);
+  // const callback = () => {
+  //   JSON.parse(savedOptions);
+  // };
 
   return (
     <HighchartsReact
       highcharts={Highcharts}
       constructorType={"stockChart"}
       options={stockChartOptions}
+      // callback={callback}
     />
   );
 };

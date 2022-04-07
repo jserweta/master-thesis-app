@@ -1,3 +1,4 @@
+@import "./variables";
 // .highcharts-container{
 //   height: 600px;
 // }
@@ -5,6 +6,9 @@
 // @import "https://code.highcharts.com/css/highcharts.css";
 
 
+.highcharts-arrow-up, .highcharts-arrow-down{
+  background-color: $color-highchart-btn;
+}
 // .highcharts-candlestick-series .highcharts-point {
 //   stroke: #2f7ed8;
 // }
