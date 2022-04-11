@@ -5,7 +5,7 @@ import { apiReducer } from "../reducers/apiReducer";
 export const useApi = (path) => {
   const [response, dispatch] = useReducer(apiReducer, {
     data: null,
-    isLoading: false,
+    isLoading: true,
     error: null,
   });
 
@@ -13,7 +13,7 @@ export const useApi = (path) => {
     dispatch({ type: "FETCHING" });
     doFetch(path)
       .then((data) => dispatch({ type: "SUCCESS", payload: data }))
-      .catch((error) => dispatch({ type: "ERROR", payload: error }));
+      .catch((data) => dispatch({ type: "ERROR", payload: data }));
   }, [path]);
 
   return response;
