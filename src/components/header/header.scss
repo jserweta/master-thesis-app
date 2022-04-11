@@ -1,0 +1,33 @@
+@import "../../sass/variables";
+
+.header{
+  height: 60px;
+  padding: 30px calc((100vw - $site-max-width) / 2);
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 30px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  color: $color-white;
+  background-color: darken($color-background, 2%);
+
+
+  img{
+    height: 100%;
+    width: auto;
+  }
+  
+}
+
+@media(max-width: $site-max-width){
+  .header{
+    width: 100%;
+    padding: 30px;
+  }
+}
+@media(max-width: $sm){
+  .header{
+    padding: 30px 10px;
+  }
+}

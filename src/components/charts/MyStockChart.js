@@ -37,7 +37,19 @@ const MyStockChart = ({ financialData }) => {
 
   const stockChartOptions = {
     chart: {
-      height: 600,
+      height: 500,
+      width: 1000,
+      // events: {
+      //   load: function () {
+      //     let context = this.series[2];
+      //     console.log(context);
+      //     this.series
+      //       .flatMap((serie) => serie.groupedData)
+      //       .forEach((point, inx) => {
+      //         context.groupedData[1].color = point.color;
+      //       });
+      //   },
+      // },
     },
     title: {
       text: `${financialData.metaData[1]} Stock Price`,
@@ -197,17 +209,12 @@ const MyStockChart = ({ financialData }) => {
       ],
     },
   };
-  // const savedOptions = localStorage.getItem(["highcharts-chart"]);
-  // const callback = () => {
-  //   JSON.parse(savedOptions);
-  // };
 
   return (
     <HighchartsReact
       highcharts={Highcharts}
       constructorType={"stockChart"}
       options={stockChartOptions}
-      // callback={callback}
     />
   );
 };

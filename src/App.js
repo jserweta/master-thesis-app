@@ -1,23 +1,16 @@
-import MyStockChart from "./components/charts/MyStockChart";
-// import Highcharts from "highcharts/highstock";
-import { useApi } from "./hooks/useApi";
-import "./sass/global.scss";
 import "./sass/_normalize.scss";
-import "./sass/_highcharts.scss";
+import "./sass/global.scss";
+import ChartContainer from "./components/charts/ChartContainer";
+import { Header } from "./components/header/Header";
 
 function App() {
-  const { data, isLoading, error } = useApi(
-    `function=TIME_SERIES_DAILY&symbol=GOOG&outputsize=full`
-  );
-  console.log(data);
   return (
-    <div>
-      {isLoading && "Loading..."}
-
-      {error && <div>Oops! Data loading failed :(</div>}
-
-      {!isLoading && data !== null && <MyStockChart financialData={data} />}
-    </div>
+    <>
+      <Header />
+      <div className="app">
+        <ChartContainer />
+      </div>
+    </>
   );
 }
 
