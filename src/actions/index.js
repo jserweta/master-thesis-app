@@ -6,6 +6,11 @@ export const doFetch = async (path) => {
 
   if ("Meta Data" in response) {
     return response;
+  } else if (
+    "bestMatches" in response &&
+    response["bestMatches"].length !== 0
+  ) {
+    return response;
   }
   throw response;
 };

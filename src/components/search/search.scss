@@ -1,0 +1,80 @@
+@import "../../sass/variables";
+
+.searchContainer {
+  &__searchBar {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: $color-white;
+    padding: 5px;
+    margin-bottom: 10px;
+
+    input {
+      border: none;
+      width: 100%;
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    svg {
+      width: 20px;
+      cursor: pointer;
+    }
+  }
+  &__searchResults {
+    // justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    max-height: 500px;
+    height: 100%;
+
+    .loadingErrorWrapper {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  &__searchItem {
+    text-align: left;
+    color: $color-white;
+
+    width: 100%;
+    cursor: pointer;
+    transition: $transition-duration;
+    // &:not(:last-of-type) {
+    border-bottom: 1px solid darken($color-white, 60%);
+    // }
+    h4 {
+      font-weight: 400;
+      margin: 0;
+      text-transform: capitalize;
+    }
+    .itemWrapper {
+      padding: 20px 10px;
+    }
+    .details {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      font-size: 14px;
+      p {
+        margin: 0;
+      }
+    }
+
+    &:hover {
+      background-color: lighten($color-background, 8%);
+    }
+  }
+}
