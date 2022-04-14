@@ -1,24 +1,30 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { ReactComponent as SearchIcon } from "../../img/search-icon.svg";
 import { useApi } from "../../hooks/useApi";
 import ReactLoading from "react-loading";
 import LoadingError from "../loadingError/LoadingError";
 import { prepareSearchData } from "../../helpers/prepareData";
+import { ChartContext } from "../../context/ChartContext";
 import "./search.scss";
 import SearchListItem from "./SearchListItem";
 
 const Search = () => {
   let searchValue = useRef();
+
+  const { setSelectedCompanyData } = useContext(ChartContext);
+
   const [searchKeywords, setSearchKeywords] = useState("");
   const res = useApi(`function=SYMBOL_SEARCH&keywords=${searchKeywords}`);
-  console.log(res);
+
+  // console.log(res);
+
   let response;
   if (!res.isLoading && res.error == null) {
     response = prepareSearchData(res.data);
   }
 
-  const searchItemOnClick = () => {
-    console.log("dupa");
+  const clickedListItem = (symbol) => {
+    setSelectedCompanyData(symbol);
   };
   // console.log(response);
 
@@ -51,12 +57,12 @@ const Search = () => {
 
         {!res.isLoading &&
           res.data !== null &&
-          res.error == null &&
+          res.error === null &&
           Object.keys(response).map((key, index) => (
             <SearchListItem
               key={index}
               itemData={response[key]}
-              itemClick={searchItemOnClick}
+              itemClick={clickedListItem}
             />
           ))}
       </div>
