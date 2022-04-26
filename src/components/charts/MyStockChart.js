@@ -14,6 +14,7 @@ import stockTools from "highcharts/modules/stock-tools";
 import brandDark from "highcharts/themes/brand-dark";
 
 import HighchartsReact from "highcharts-react-official";
+import { getSelectedData } from "../../helpers/selectedData";
 
 indicatorsAll(Highcharts);
 annotationsAdvanced(Highcharts);
@@ -50,6 +51,17 @@ const MyStockChart = ({ financialData }) => {
       //       });
       //   },
       // },
+      events: {
+        render: function (event) {
+          // console.log(event);
+          let filteredXValues = getSelectedData(
+            financialData,
+            event.target.xAxis[0].min,
+            event.target.xAxis[0].max
+          );
+          console.log(filteredXValues);
+        },
+      },
     },
     title: {
       text: `${financialData.metaData[1]} Stock Price`,
