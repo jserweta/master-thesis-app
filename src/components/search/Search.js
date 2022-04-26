@@ -55,6 +55,12 @@ const Search = () => {
           </div>
         )}
 
+        {!res.isLoading && searchKeywords === "" && (
+          <div className="loadingErrorWrapper">
+            <LoadingError message={`Type in something ;)`} />
+          </div>
+        )}
+
         {!res.isLoading &&
           res.data !== null &&
           res.error === null &&
