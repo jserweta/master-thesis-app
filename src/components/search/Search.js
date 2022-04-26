@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from "react";
-import { ReactComponent as SearchIcon } from "../../img/search-icon.svg";
+import { ReactComponent as SearchIcon } from "../../assets/img/search-icon.svg";
 import { useApi } from "../../hooks/useApi";
 import ReactLoading from "react-loading";
 import LoadingError from "../loadingError/LoadingError";
