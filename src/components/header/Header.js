@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.scss";
-import agh from "../../img/agh-logo.png";
+import agh from "../../assets/img/agh-logo.png";
 
 export const Header = () => {
   return (

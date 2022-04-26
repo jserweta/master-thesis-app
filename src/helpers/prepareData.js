@@ -1,4 +1,36 @@
-export const prepareData = (response) => {
+class Company {
+  constructor(symbol, name, region, currency, matchScore) {
+    this.symbol = symbol;
+    this.name = name;
+    this.region = region;
+    this.currency = currency;
+    this.machScore = matchScore;
+  }
+}
+
+export const prepareSearchData = (response) => {
+  let returnObj = {};
+
+  for (let key in response["bestMatches"]) {
+    returnObj[key] = new Company(
+      response["bestMatches"][key]["1. symbol"],
+      response["bestMatches"][key]["2. name"],
+      response["bestMatches"][key]["4. region"],
+      response["bestMatches"][key]["8. currency"],
+      parseFloat(response["bestMatches"][key]["9. matchScore"])
+    );
+  }
+
+  // console.log(returnObj);
+
+  // returnObj.sort(function (x, y) {
+  //   return x[0].matchScore - y[0].matchScore;
+  // });
+
+  return returnObj;
+};
+
+export const prepareChartData = (response) => {
   let returnObj = {};
   let metaData = [];
   let ohlcData = [];

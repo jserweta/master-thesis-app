@@ -1,16 +1,22 @@
+import React, { useContext } from "react";
 import MyStockChart from "./MyStockChart";
 import { useApi } from "../../hooks/useApi";
 import ReactLoading from "react-loading";
 import LoadingError from "../loadingError/LoadingError";
+import { ChartContext } from "../../context/ChartContext";
 import "./charts.scss";
-import { prepareData } from "../../helpers/prepareData";
+import { prepareChartData } from "../../helpers/prepareData";
 
 function ChartContainer() {
-  let res = useApi(`function=TIME_SERIES_DAILY&symbol=GOOG&outputsize=full`);
+  const { selectedCompanyData } = useContext(ChartContext);
+  const symbol = selectedCompanyData !== "" ? selectedCompanyData : "GOOG";
+  const res = useApi(
+    `function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full`
+  );
 
   let response;
   if (!res.isLoading && res.error == null) {
-    response = prepareData(res.data);
+    response = prepareChartData(res.data);
   }
 
   return (

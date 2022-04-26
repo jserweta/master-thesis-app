@@ -4,8 +4,8 @@ import "./loadingError.scss";
 const LoadingError = ({ message }) => {
   return (
     <div className="loadingError">
-      {message.split("\n").map((str) => (
-        <p>{str}</p>
+      {message.split("\n").map((str, index) => (
+        <p key={index}>{str}</p>
       ))}
     </div>
   );
