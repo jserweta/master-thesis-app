@@ -16,8 +16,6 @@ const Search = () => {
   const [searchKeywords, setSearchKeywords] = useState("");
   const res = useApi(`function=SYMBOL_SEARCH&keywords=${searchKeywords}`);
 
-  // console.log(res);
-
   let response;
   if (!res.isLoading && res.error == null) {
     response = prepareSearchData(res.data);
@@ -26,7 +24,6 @@ const Search = () => {
   const clickedListItem = (symbol) => {
     setSelectedCompanyData(symbol);
   };
-  // console.log(response);
 
   return (
     <div className="searchContainer">

@@ -1,7 +1,6 @@
 import React from "react";
 
 const PatternListItem = ({ itemData, itemClick }) => {
-  // console.log(itemData);
   return (
     <div
       className={`patternsList__patternItem ${itemData.active ? "active" : ""}`}

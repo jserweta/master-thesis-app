@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const ChartContext = React.createContext();
+export const ChartContext = React.createContext(null);
 
 const ChartDataProvider = ({ children }) => {
   const [selectedCompanyData, setSelectedCompanyData] = useState("");

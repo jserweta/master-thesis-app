@@ -27,6 +27,19 @@ stockTools(Highcharts);
 brandDark(Highcharts);
 
 const MyStockChart = ({ financialData }) => {
+  let ohlcData = Object.keys(financialData.ohlcData).map((key) => [
+    financialData.ohlcData[key].timestamp,
+    financialData.ohlcData[key].open,
+    financialData.ohlcData[key].high,
+    financialData.ohlcData[key].low,
+    financialData.ohlcData[key].close,
+  ]);
+
+  let volumeData = Object.keys(financialData.volumeData).map((key) => [
+    financialData.volumeData[key].timestamp,
+    financialData.volumeData[key].volume,
+  ]);
+
   const currencyOptions = { style: "currency", currency: "USD" };
   const numberFormat = new Intl.NumberFormat("en-US", currencyOptions);
 
@@ -55,11 +68,11 @@ const MyStockChart = ({ financialData }) => {
         render: function (event) {
           // console.log(event);
           let filteredXValues = getSelectedData(
-            financialData,
+            financialData.ohlcData,
             event.target.xAxis[0].min,
             event.target.xAxis[0].max
           );
-          console.log(filteredXValues);
+          // console.log(filteredXValues);
         },
       },
     },
@@ -189,7 +202,7 @@ const MyStockChart = ({ financialData }) => {
         type: "candlestick",
         id: `${financialData.metaData[1]}-ohlc`,
         name: `${financialData.metaData[1]} Stock Price`,
-        data: financialData.ohlcData,
+        data: ohlcData,
         tooltip: {
           valuePrefix: `$`,
         },
@@ -202,7 +215,7 @@ const MyStockChart = ({ financialData }) => {
         type: "column",
         id: `${financialData.metaData[1]}-volume`,
         name: `${financialData.metaData[1]} Volume`,
-        data: financialData.volumeData,
+        data: volumeData,
         yAxis: 1,
       },
     ],
