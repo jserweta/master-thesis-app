@@ -1,2 +1,2 @@
-*.ts linguist-language=TypeScript
-*.jsx linguist-language=React
+*.ts linguist-detectable
+*.jsx linguist-detectable
