@@ -1,0 +1,51 @@
+$site-max-width: 1366px;
+$transition-duration: 0.22s;
+
+// Colors
+$color-highchart-btn: #f7f7f7;
+$color-black: #000000;
+$color-white: #ffffff;
+$color-background: #131722;
+
+// Breakpoints
+$xxl: $site-max-width;
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
+$xs: 575.98px;
+
+// Fonts
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("../assets/fonts/Montserrat-Light.woff2") format("woff2"),
+    url("../assets/fonts/Montserrat-Light.woff") format("woff"),
+    url("../assets/fonts/Montserrat-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("../assets/fonts/Montserrat-Medium.woff2") format("woff2"),
+    url("../assets/fonts/Montserrat-Medium.woff") format("woff"),
+    url("../assets/fonts/Montserrat-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("../assets/fonts/Montserrat-Bold.woff2") format("woff2"),
+    url("../assets/fonts/Montserrat-Bold.woff") format("woff"),
+    url("../assets/fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

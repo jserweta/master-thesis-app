@@ -1,0 +1,44 @@
+@import "./variables";
+
+
+body {
+  color: $color-black;
+  background-color: $color-background;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+}
+
+
+.app{
+  // border: 2px solid red;
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: $site-max-width;
+  justify-content: space-between;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 40px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@media(max-width: $site-max-width){
+  .app{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media(max-width: $sm){
+  .app{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./sass/_normalize.scss";
+import "./sass/global.scss";
+import ChartContainer from "./components/charts/ChartContainer";
+import { Header } from "./components/header/Header";
+import Search from "./components/search/Search";
+import ChartDataProvider from "./context/ChartContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <div className="app">
+        <ChartDataProvider>
+          <ChartContainer />
+          <Search />
+        </ChartDataProvider>
+      </div>
+    </>
   );
 }
 
