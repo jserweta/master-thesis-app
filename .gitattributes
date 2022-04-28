@@ -1,2 +1,2 @@
-src/**/*.ts linguist-language=JavaScript linguist-detectable
-src/**/*.jsx linguist-language=JavaScript linguist-detectable
+*.ts linguist-language=JavaScript linguist-detectable=true
+*.jsx linguist-language=JavaScript linguist-detectable=true
