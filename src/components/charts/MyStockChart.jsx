@@ -72,7 +72,7 @@ const MyStockChart = ({ financialData }) => {
             event.target.xAxis[0].min,
             event.target.xAxis[0].max
           );
-          // console.log(filteredXValues);
+          console.log(filteredXValues);
         },
       },
     },

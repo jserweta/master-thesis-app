@@ -1,10 +1,10 @@
-import "./sass/_normalize.scss";
-import "./sass/global.scss";
 import ChartContainer from "./components/charts/ChartContainer";
 import { Header } from "./components/header/Header";
 import Search from "./components/search/Search";
 import ChartDataProvider from "./context/ChartContext";
 import CandlestickSelector from "./components/candlestickSelector/CandlestickSelector";
+import "./sass/_normalize.scss";
+import "./sass/global.scss";
 
 function App() {
   return (
