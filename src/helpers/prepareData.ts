@@ -1,6 +1,5 @@
 import { SearchDataFormat } from "../interfaces/apiSearchData";
 import { ChartDataFormat } from "../interfaces/apiChartsData";
-
 import { Company } from "../interfaces/company";
 import { OhlcItem } from "../interfaces/ohlcItem";
 import { VolumeItem } from "../interfaces/volumeItem";
@@ -9,32 +8,12 @@ export const prepareSearchData = (response: SearchDataFormat) => {
   let returnObj: Company[] = [];
   for (let key in response["bestMatches"]) {
     let newCompany: Company = {
-      symbol: (
-        response["bestMatches"][key] as {
-          [key: string]: any;
-        }
-      )["1. symbol"],
-      name: (
-        response["bestMatches"][key] as {
-          [key: string]: any;
-        }
-      )["2. name"],
-      region: (
-        response["bestMatches"][key] as {
-          [key: string]: any;
-        }
-      )["4. region"],
-      currency: (
-        response["bestMatches"][key] as {
-          [key: string]: any;
-        }
-      )["8. currency"],
+      symbol: (response["bestMatches"][key] as any)["1. symbol"],
+      name: (response["bestMatches"][key] as any)["2. name"],
+      region: (response["bestMatches"][key] as any)["4. region"],
+      currency: (response["bestMatches"][key] as any)["8. currency"],
       matchScore: parseFloat(
-        (
-          response["bestMatches"][key] as {
-            [key: string]: any;
-          }
-        )["9. matchScore"]
+        (response["bestMatches"][key] as any)["9. matchScore"]
       ),
     };
     returnObj.push(newCompany);
@@ -59,43 +38,21 @@ export const prepareChartData = (response: ChartDataFormat) => {
     let newOhlcEntry: OhlcItem = {
       timestamp: toTimestamp(key),
       open: parseFloat(
-        (
-          response["Time Series (Daily)"][key] as {
-            [key: string]: any;
-          }
-        )["1. open"]
+        (response["Time Series (Daily)"][key] as any)["1. open"]
       ),
       high: parseFloat(
-        (
-          response["Time Series (Daily)"][key] as {
-            [key: string]: any;
-          }
-        )["2. high"]
+        (response["Time Series (Daily)"][key] as any)["2. high"]
       ),
-      low: parseFloat(
-        (
-          response["Time Series (Daily)"][key] as {
-            [key: string]: any;
-          }
-        )["3. low"]
-      ),
+      low: parseFloat((response["Time Series (Daily)"][key] as any)["3. low"]),
       close: parseFloat(
-        (
-          response["Time Series (Daily)"][key] as {
-            [key: string]: any;
-          }
-        )["4. close"]
+        (response["Time Series (Daily)"][key] as any)["4. close"]
       ),
     };
 
     let newVolumeEntry: VolumeItem = {
       timestamp: toTimestamp(key),
       volume: parseInt(
-        (
-          response["Time Series (Daily)"][key] as {
-            [key: string]: any;
-          }
-        )["5. volume"]
+        (response["Time Series (Daily)"][key] as any)["5. volume"]
       ),
     };
     ohlcData.push(newOhlcEntry);
