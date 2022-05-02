@@ -15,6 +15,7 @@ import brandDark from "highcharts/themes/brand-dark";
 
 import HighchartsReact from "highcharts-react-official";
 import { getSelectedData } from "../../helpers/selectedData";
+import { doji } from "../../logic/candlestickPatterns/Doji";
 
 indicatorsAll(Highcharts);
 annotationsAdvanced(Highcharts);
@@ -66,13 +67,32 @@ const MyStockChart = ({ financialData }) => {
       // },
       events: {
         render: function (event) {
-          // console.log(event);
           let filteredXValues = getSelectedData(
             financialData.ohlcData,
             event.target.xAxis[0].min,
             event.target.xAxis[0].max
           );
-          console.log(filteredXValues);
+
+          let data = filteredXValues.reduce(
+            (acc, current) => {
+              acc.open.push(current.open);
+              acc.high.push(current.high);
+              acc.low.push(current.low);
+              acc.close.push(current.close);
+              acc.timestamp.push(current.timestamp);
+              return acc;
+            },
+            {
+              open: [],
+              high: [],
+              low: [],
+              close: [],
+              timestamp: [],
+            }
+          );
+
+          console.log(data);
+          console.log(doji(data));
         },
       },
     },
