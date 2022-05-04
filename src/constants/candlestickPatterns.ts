@@ -1,7 +1,8 @@
 const CANDLESTICK_PATTERNS = [
   {
-    name: "All",
-    active: true,
+    name: "Doji",
+    function: "doji",
+    active: false,
   },
   {
     name: "Abandoned Baby",
@@ -11,10 +12,7 @@ const CANDLESTICK_PATTERNS = [
     name: "Bearish Engulfing Pattern",
     active: false,
   },
-  {
-    name: "Doji",
-    active: false,
-  },
+
   {
     name: "Bullish Hammer",
     active: false,

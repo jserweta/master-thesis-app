@@ -11,6 +11,7 @@ const CandlestickSelector = () => {
     useState(CANDLESTICK_PATTERNS);
 
   const clickedPatternItem = (itemName) => {
+    let allFalse = { name: "allFalse", active: false };
     let clickedItemIndex = candlestickPatterns.findIndex(
       (obj) => obj.name === itemName
     );
@@ -18,14 +19,19 @@ const CandlestickSelector = () => {
     candlestickPatterns.forEach((item, index) => {
       if (index === clickedItemIndex) {
         item.active = !item.active;
+        if (!item.active) {
+          allFalse.active = true;
+        }
       } else {
         item.active = false;
       }
     });
+    // console.log(candlestickPatterns);
 
     setCandlestickPatterns([...candlestickPatterns]);
-
-    setSelectedCandlestickPattern(candlestickPatterns[clickedItemIndex]);
+    allFalse.active
+      ? setSelectedCandlestickPattern(allFalse)
+      : setSelectedCandlestickPattern(candlestickPatterns[clickedItemIndex]);
   };
 
   return (

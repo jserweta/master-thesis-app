@@ -27,7 +27,10 @@ exporting(Highcharts);
 stockTools(Highcharts);
 brandDark(Highcharts);
 
-const MyStockChart = ({ financialData }) => {
+const MyStockChart = ({ financialData, patternDetection }) => {
+  let stockChartComponent = useRef(null);
+  let selectedPattern = useRef({});
+
   let ohlcData = Object.keys(financialData.ohlcData).map((key) => [
     financialData.ohlcData[key].timestamp,
     financialData.ohlcData[key].open,
@@ -50,50 +53,56 @@ const MyStockChart = ({ financialData }) => {
   //   ["month", [1, 3, 6]],
   // ];
 
-  const afterChartCreated = (chart) => {
-    chart.setCandlestickPattern = function () {
-      let chartSeries = chart.series[0];
-      const displayedData = getDataSelectedOnChart(
-        financialData.ohlcData,
-        chart.xAxis[0].min,
-        chart.xAxis[0].max
-      );
+  const addFlagsToChart = (patternIndexes, displayedData) => {
+    let chartSeries = stockChartComponent.current.chart.series[0];
 
-      const patternIndexes = doji(displayedData);
-      let patternFlags = chart.get("candlestickPattern");
+    let patternFlags =
+      stockChartComponent.current.chart.get("candlestickPattern");
 
-      chartSeries.processedXData.forEach((chartXSeriesElem, i) => {
-        // if (
-        //   !(
-        //     chartXSeriesElem >= chart.xAxis[0].min &&
-        //     chartXSeriesElem <= chart.xAxis[0].max
-        //   )
-        // ) {
-        //   patternFlags.data[i].remove(false);
-        //   //  .update(null);
-        // }
-
-        patternIndexes.forEach((patternIndexesElem) => {
-          if (
-            chartXSeriesElem === displayedData.timestamp[patternIndexesElem]
-          ) {
-            let index = patternFlags.xData.indexOf(
-              displayedData.timestamp[patternIndexesElem]
-            );
-            if (index === -1) {
-              patternFlags.addPoint({
-                x: chartXSeriesElem,
-                y: chartSeries.processedYData[i][0],
-                text: "Here!",
-                title: "x",
-              }); // console.log(chart.series[2].data);
-            }
+    chartSeries.processedXData.forEach((chartXSeriesElem, i) => {
+      patternIndexes.forEach((patternIndexesElem) => {
+        if (chartXSeriesElem === displayedData.timestamp[patternIndexesElem]) {
+          let index = patternFlags.xData.indexOf(
+            displayedData.timestamp[patternIndexesElem]
+          );
+          if (index === -1) {
+            patternFlags.addPoint({
+              x: chartXSeriesElem,
+              y: chartSeries.processedYData[i][0],
+              text: "Here!",
+              title: "x",
+            });
           }
-        });
+        }
       });
-    };
-    chart.setCandlestickPattern();
-    chart.rangeSelector.clickButton(2, { type: "month", count: "6" }, true);
+    });
+  };
+
+  const clearFlagsData = () => {
+    let patternFlags =
+      stockChartComponent.current.chart.get("candlestickPattern");
+    // stockChartComponent.current.chart.series[2].setData([]);
+    patternFlags.setData([]);
+  };
+
+  const findCandlestickPattern = function (dataMin, dataMax) {
+    switch (selectedPattern.current.function) {
+      case "doji":
+        const displayedData = getDataSelectedOnChart(
+          financialData.ohlcData,
+          dataMin, // chart.xAxis[0].min,
+          dataMax //chart.xAxis[0].max
+        );
+
+        const patternIndexes = doji(displayedData);
+        addFlagsToChart(patternIndexes, displayedData);
+
+        break;
+
+      default:
+        clearFlagsData();
+        console.log(`clear data`);
+    }
   };
 
   const [stockChartOptions] = useState({
@@ -101,23 +110,6 @@ const MyStockChart = ({ financialData }) => {
       height: 500,
       renderTo: "chartContainer",
       // width: 1000,
-      // events: {
-      //   load: function () {
-      //     let context = this.series[2];
-      //     console.log(context);
-      //     this.series
-      //       .flatMap((serie) => serie.groupedData)
-      //       .forEach((point, inx) => {
-      //         context.groupedData[1].color = point.color;
-      //       });
-      //   },
-      // },
-
-      // events: {
-      //   render: function (event) {
-
-      //   },
-      // },
     },
     title: {
       text: `${financialData.metaData[1]} Stock Price`,
@@ -197,7 +189,16 @@ const MyStockChart = ({ financialData }) => {
       type: "datetime",
       events: {
         afterSetExtremes: function (e) {
-          this.chart.setCandlestickPattern();
+          // console.log(e);
+
+          // if (
+          //   Object.keys(patternDetection).length > 0
+          //   // stockChartComponent.current.chart
+          // ) {
+          // console.log(e);
+          console.log(selectedPattern);
+          findCandlestickPattern(e.min, e.max);
+          // }
         },
       },
     },
@@ -289,19 +290,33 @@ const MyStockChart = ({ financialData }) => {
     },
   });
 
-  // useEffect(() => {
-  //   const stockChart = stockChartComponent.current.chart;
-  // }, []);
+  useEffect(() => {
+    if (Object.keys(patternDetection).length !== 0) {
+      selectedPattern.current = patternDetection;
+      console.log(selectedPattern.current);
+    }
+
+    if (stockChartComponent.current.chart !== null) {
+      stockChartComponent.current.chart.rangeSelector.clickButton(
+        2,
+        { type: "month", count: "6" },
+        true
+      );
+      findCandlestickPattern(
+        stockChartComponent.current.chart.xAxis[0].min,
+        stockChartComponent.current.chart.xAxis[0].max
+      );
+    }
+  }, [patternDetection, selectedPattern]);
 
   return (
     <HighchartsReact
-      // ref={stockChartComponent}
+      ref={stockChartComponent}
       highcharts={Highcharts}
       constructorType={"stockChart"}
       options={stockChartOptions}
       allowChartUpdate={true}
       containerProps={{ style: { width: "100%" } }}
-      callback={afterChartCreated}
     />
   );
 };

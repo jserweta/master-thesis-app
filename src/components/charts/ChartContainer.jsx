@@ -20,7 +20,7 @@ function ChartContainer() {
     response = prepareChartData(res.data);
   }
 
-  console.log(selectedCandlestickPattern.name);
+  // console.log(selectedCandlestickPattern);
 
   return (
     <div className="chartContainer">
@@ -40,7 +40,10 @@ function ChartContainer() {
       )}
 
       {!res.isLoading && res.data !== null && res.error == null && (
-        <MyStockChart financialData={response} />
+        <MyStockChart
+          financialData={response}
+          patternDetection={selectedCandlestickPattern}
+        />
       )}
     </div>
   );

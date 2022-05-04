@@ -15,7 +15,7 @@ export default class Doji extends CandlestickFinder {
       isOpenEqualsClose && this.approximateEqual(daysOpen, daysHigh);
     let isLowEqualsClose =
       isOpenEqualsClose && this.approximateEqual(daysClose, daysLow);
-    return isOpenEqualsClose && isHighEqualsOpen == isLowEqualsClose;
+    return isOpenEqualsClose && isHighEqualsOpen === isLowEqualsClose;
   }
 }
 
