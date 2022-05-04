@@ -3,7 +3,7 @@ import { ReactComponent as SearchIcon } from "../../assets/img/search-icon.svg";
 import { useApi } from "../../hooks/useApi";
 import ReactLoading from "react-loading";
 import LoadingError from "../loadingError/LoadingError";
-import { prepareSearchData } from "../../helpers/prepareData";
+import { prepareSearchData } from "../../helpers/prepareDataFromApi";
 import { ChartContext } from "../../context/ChartContext";
 import "./search.scss";
 import SearchListItem from "./SearchListItem";

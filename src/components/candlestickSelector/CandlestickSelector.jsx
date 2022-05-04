@@ -1,50 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PatternListItem from "./PatternListItem";
+import { ChartContext } from "../../context/ChartContext";
+import { CANDLESTICK_PATTERNS } from "../../constants/candlestickPatterns";
 import "./candlestickSelector.scss";
 
 const CandlestickSelector = () => {
-  const [candlestickPatterns, setCandlestickPatterns] = useState([
-    {
-      name: "All",
-      active: true,
-    },
-    {
-      name: "Abandoned Baby",
-      active: false,
-    },
-    {
-      name: "Bearish Engulfing Pattern",
-      active: false,
-    },
-    {
-      name: "Doji",
-      active: false,
-    },
-    {
-      name: "Bullish Hammer",
-      active: false,
-    },
-    {
-      name: "Bearish Hammer",
-      active: false,
-    },
-    {
-      name: "Hanging Man",
-      active: false,
-    },
-    {
-      name: "Tweezer Top",
-      active: false,
-    },
-  ]);
+  const { setSelectedCandlestickPattern } = useContext(ChartContext);
+
+  const [candlestickPatterns, setCandlestickPatterns] =
+    useState(CANDLESTICK_PATTERNS);
 
   const clickedPatternItem = (itemName) => {
-    let clickedItem = candlestickPatterns.findIndex(
+    let clickedItemIndex = candlestickPatterns.findIndex(
       (obj) => obj.name === itemName
     );
 
     candlestickPatterns.forEach((item, index) => {
-      if (index === clickedItem) {
+      if (index === clickedItemIndex) {
         item.active = !item.active;
       } else {
         item.active = false;
@@ -52,6 +24,8 @@ const CandlestickSelector = () => {
     });
 
     setCandlestickPatterns([...candlestickPatterns]);
+
+    setSelectedCandlestickPattern(candlestickPatterns[clickedItemIndex]);
   };
 
   return (

@@ -4,10 +4,15 @@ export const ChartContext = React.createContext(null);
 
 const ChartDataProvider = ({ children }) => {
   const [selectedCompanyData, setSelectedCompanyData] = useState("");
+  const [selectedCandlestickPattern, setSelectedCandlestickPattern] = useState(
+    {}
+  );
 
   const providerValue = {
     selectedCompanyData,
     setSelectedCompanyData,
+    selectedCandlestickPattern,
+    setSelectedCandlestickPattern,
   };
 
   return (

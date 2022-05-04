@@ -6,9 +6,6 @@ export default class CandlestickFinder {
   constructor(requiredCount: number, name: string) {
     this.requiredCount = requiredCount;
     this.name = name;
-    // if (new.target === Abstract) {
-    //     throw new TypeError("Abstract class");
-    // }
   }
   approximateEqual(a: number, b: number): boolean {
     let left = parseFloat(Math.abs(a - b).toPrecision(4)) * 1;
@@ -17,12 +14,12 @@ export default class CandlestickFinder {
   }
 
   logic(data: CandleFinderData): boolean {
-    throw "this has to be implemented";
+    throw Object.assign(new Error("Implement in specific pattern!"));
   }
   getAllPatternIndex(data: CandleFinderData) {
     if (data.close.length < this.requiredCount) {
       console.warn(
-        "Data count less than data required for the strategy ",
+        "Data count less than data required for the strategy!",
         this.name
       );
       return [];
@@ -46,7 +43,7 @@ export default class CandlestickFinder {
   hasPattern(data: CandleFinderData) {
     if (data.close.length < this.requiredCount) {
       console.warn(
-        "Data count less than data required for the strategy ",
+        "Data count less than data required for the strategy!",
         this.name
       );
       return false;
