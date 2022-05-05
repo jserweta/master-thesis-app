@@ -5,7 +5,7 @@ export default class DarkCloudCover extends CandlestickFinder {
   // name = "DarkCloudCover";
   // requiredCount = 2;
   constructor(requiredCount: number, name: string) {
-    super(requiredCount, name);
+    super(2, "DarkCloudCover");
     // this.requiredCount = requiredCount;
     // name = "DarkCloudCover";
   }
