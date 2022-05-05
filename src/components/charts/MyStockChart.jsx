@@ -53,7 +53,7 @@ const MyStockChart = ({ financialData, patternDetection }) => {
   //   ["month", [1, 3, 6]],
   // ];
 
-  const addFlagsToChart = (patternIndexes, displayedData) => {
+  const addFlagsToChart = (patternIndexes, displayedData, flagName) => {
     let chartSeries = stockChartComponent.current.chart.series[0];
 
     let patternFlags =
@@ -69,8 +69,12 @@ const MyStockChart = ({ financialData, patternDetection }) => {
             patternFlags.addPoint({
               x: chartXSeriesElem,
               y: chartSeries.processedYData[i][0],
-              text: "Here!",
-              title: "x",
+              text: `<h2 class="tooltipPattern__header">${flagName}</h2><br>
+                      <h1 class="tooltipPattern__category">Open: </h1><p>$${chartSeries.processedYData[i][0]}</p><br>
+                      <h1 class="tooltipPattern__category">High: </h1><p>$${chartSeries.processedYData[i][1]}</p><br>
+                      <h1 class="tooltipPattern__category">Low: </h1><p>$${chartSeries.processedYData[i][2]}</p><br>
+                      <h1 class="tooltipPattern__category">Close: </h1><p>$${chartSeries.processedYData[i][3]}</p>`,
+              title: "●",
             });
           }
         }
@@ -95,13 +99,12 @@ const MyStockChart = ({ financialData, patternDetection }) => {
         );
 
         const patternIndexes = doji(displayedData);
-        addFlagsToChart(patternIndexes, displayedData);
+        addFlagsToChart(patternIndexes, displayedData, "Doji");
 
         break;
 
       default:
         clearFlagsData();
-        console.log(`clear data`);
     }
   };
 
@@ -189,16 +192,7 @@ const MyStockChart = ({ financialData, patternDetection }) => {
       type: "datetime",
       events: {
         afterSetExtremes: function (e) {
-          // console.log(e);
-
-          // if (
-          //   Object.keys(patternDetection).length > 0
-          //   // stockChartComponent.current.chart
-          // ) {
-          // console.log(e);
-          console.log(selectedPattern);
           findCandlestickPattern(e.min, e.max);
-          // }
         },
       },
     },

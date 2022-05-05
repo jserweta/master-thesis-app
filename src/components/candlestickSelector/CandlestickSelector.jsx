@@ -26,7 +26,6 @@ const CandlestickSelector = () => {
         item.active = false;
       }
     });
-    // console.log(candlestickPatterns);
 
     setCandlestickPatterns([...candlestickPatterns]);
     allFalse.active

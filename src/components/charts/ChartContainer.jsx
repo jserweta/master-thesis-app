@@ -20,8 +20,6 @@ function ChartContainer() {
     response = prepareChartData(res.data);
   }
 
-  // console.log(selectedCandlestickPattern);
-
   return (
     <div className="chartContainer">
       {res.isLoading && (
