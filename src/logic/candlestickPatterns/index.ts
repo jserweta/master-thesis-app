@@ -1,17 +1,19 @@
-export { doji } from "./Doji";
+//Bullish patterns
+export { bullishHammerStick } from "./BullishHammerStick";
+export { bullishSpinningTop } from "./BullishSpinningTop";
+export { bullishInvertedHammerStick } from "./BullishInvertedHammerStick";
+export { bullishHarami } from "./BullishHarami";
 export { morningStar } from "./MorningStar";
-export { eveningStar } from "./EveningStar";
-
-export { darkCloudCover } from "./DarkCloudCover";
-export { threeBlackCrows } from "./ThreeBlackCrows";
 export { threeWhiteSoldiers } from "./ThreeWhiteSoldiers";
 
-export { bearishHammerStick } from "./BearishHammerStick";
-export { bearishHarami } from "./BearishHarami";
-export { bearishInvertedHammerStick } from "./BearishInvertedHammerStick";
-export { bearishSpinningTop } from "./BearishSpinningTop";
+//Mid section
+export { doji } from "./Doji";
+export { darkCloudCover } from "./DarkCloudCover";
 
-export { bullishHammerStick } from "./BullishHammerStick";
-export { bullishHarami } from "./BullishHarami";
-export { bullishInvertedHammerStick } from "./BullishInvertedHammerStick";
-export { bullishSpinningTop } from "./BullishSpinningTop";
+//Bearish patterns
+export { bearishHammerStick } from "./BearishHammerStick";
+export { bearishSpinningTop } from "./BearishSpinningTop";
+export { bearishInvertedHammerStick } from "./BearishInvertedHammerStick";
+export { bearishHarami } from "./BearishHarami";
+export { eveningStar } from "./EveningStar";
+export { threeBlackCrows } from "./ThreeBlackCrows";
