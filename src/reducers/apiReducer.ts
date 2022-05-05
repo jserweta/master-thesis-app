@@ -1,9 +1,3 @@
-// import { ChartDataFormat } from "../interfaces/apiChartsData";
-// const initialState = {
-//   data: null,
-//   isLoading: true,
-//   error: null,
-// };
 interface State {
   data: any;
   isLoading: boolean;

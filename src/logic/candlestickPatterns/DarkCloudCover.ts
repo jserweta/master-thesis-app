@@ -1,13 +1,16 @@
-import CandleFinderData from "../CandleFinderData";
+import { PatternFinderData } from "../../interfaces/patternFinderData";
 import CandlestickFinder from "../CandlestickFinder";
 
 export default class DarkCloudCover extends CandlestickFinder {
-  constructor() {
-    super(2, "DarkCloudCover");
-    // this.name = 'DarkCloudCover';
-    // this.requiredCount  = 2;
+  // name = "DarkCloudCover";
+  // requiredCount = 2;
+  constructor(requiredCount: number, name: string) {
+    super(requiredCount, name);
+    // this.requiredCount = requiredCount;
+    // name = "DarkCloudCover";
   }
-  logic(data: CandleFinderData) {
+
+  logic(data: PatternFinderData) {
     let firstdaysOpen = data.open[0];
     let firstdaysClose = data.close[0];
     let firstdaysHigh = data.high[0];
@@ -29,6 +32,6 @@ export default class DarkCloudCover extends CandlestickFinder {
   }
 }
 
-export function darkCloudCover(data: CandleFinderData) {
-  return new DarkCloudCover().getAllPatternIndex(data);
+export function darkCloudCover(data: PatternFinderData) {
+  return new DarkCloudCover(2, "DarkCloudCover").getAllPatternIndex(data);
 }

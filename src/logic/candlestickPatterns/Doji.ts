@@ -1,11 +1,11 @@
-import CandleFinderData from "../CandleFinderData";
+import { PatternFinderData } from "../../interfaces/patternFinderData";
 import CandlestickFinder from "../CandlestickFinder";
 
 export default class Doji extends CandlestickFinder {
   constructor() {
     super(1, "Doji");
   }
-  logic(data: CandleFinderData): boolean {
+  logic(data: PatternFinderData): boolean {
     let daysOpen = data.open[0];
     let daysClose = data.close[0];
     let daysHigh = data.high[0];
@@ -19,6 +19,6 @@ export default class Doji extends CandlestickFinder {
   }
 }
 
-export function doji(data: CandleFinderData) {
+export function doji(data: PatternFinderData) {
   return new Doji().getAllPatternIndex(data);
 }

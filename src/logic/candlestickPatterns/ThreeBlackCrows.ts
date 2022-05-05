@@ -1,4 +1,4 @@
-import CandleFinderData from "../CandleFinderData";
+import { PatternFinderData } from "../../interfaces/patternFinderData";
 import CandlestickFinder from "../CandlestickFinder";
 
 export default class ThreeBlackCrows extends CandlestickFinder {
@@ -7,7 +7,7 @@ export default class ThreeBlackCrows extends CandlestickFinder {
     // this.name = "ThreeBlackCrows";
     // this.requiredCount = 3;
   }
-  logic(data: CandleFinderData) {
+  logic(data: PatternFinderData) {
     let firstdaysOpen = data.open[0];
     let firstdaysClose = data.close[0];
     // let firstdaysHigh   = data.high[0];
@@ -38,6 +38,6 @@ export default class ThreeBlackCrows extends CandlestickFinder {
   }
 }
 
-export function threeBlackCrows(data: CandleFinderData) {
+export function threeBlackCrows(data: PatternFinderData) {
   return new ThreeBlackCrows().getAllPatternIndex(data);
 }

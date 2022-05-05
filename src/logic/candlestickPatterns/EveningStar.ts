@@ -1,4 +1,4 @@
-import CandleFinderData from "../CandleFinderData";
+import { PatternFinderData } from "../../interfaces/patternFinderData";
 import CandlestickFinder from "../CandlestickFinder";
 
 export default class EveningStar extends CandlestickFinder {
@@ -7,7 +7,7 @@ export default class EveningStar extends CandlestickFinder {
     // this.name = ;
     // this.requiredCount  = 3;
   }
-  logic(data: CandleFinderData) {
+  logic(data: PatternFinderData) {
     let firstdaysOpen = data.open[0];
     let firstdaysClose = data.close[0];
     let firstdaysHigh = data.high[0];
@@ -43,6 +43,6 @@ export default class EveningStar extends CandlestickFinder {
   }
 }
 
-export function eveningStar(data: CandleFinderData) {
+export function eveningStar(data: PatternFinderData) {
   return new EveningStar().getAllPatternIndex(data);
 }

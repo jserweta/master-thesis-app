@@ -1,4 +1,4 @@
-import CandleFinderData from "../CandleFinderData";
+import { PatternFinderData } from "../../interfaces/patternFinderData";
 import CandlestickFinder from "../CandlestickFinder";
 
 export default class ThreeWhiteSoldiers extends CandlestickFinder {
@@ -7,7 +7,7 @@ export default class ThreeWhiteSoldiers extends CandlestickFinder {
     // this.name = "ThreeWhiteSoldiers";
     // this.requiredCount = 3;
   }
-  logic(data: CandleFinderData) {
+  logic(data: PatternFinderData) {
     let firstdaysOpen = data.open[0];
     let firstdaysClose = data.close[0];
     let firstdaysHigh = data.high[0];
@@ -38,6 +38,6 @@ export default class ThreeWhiteSoldiers extends CandlestickFinder {
   }
 }
 
-export function threeWhiteSoldiers(data: CandleFinderData) {
+export function threeWhiteSoldiers(data: PatternFinderData) {
   return new ThreeWhiteSoldiers().getAllPatternIndex(data);
 }

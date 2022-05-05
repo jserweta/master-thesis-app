@@ -1,4 +1,4 @@
-import CandleFinderData from "../CandleFinderData";
+import { PatternFinderData } from "../../interfaces/patternFinderData";
 import CandlestickFinder from "../CandlestickFinder";
 
 export default class MorningStar extends CandlestickFinder {
@@ -7,7 +7,7 @@ export default class MorningStar extends CandlestickFinder {
     // this.name = ;
     // this.requiredCount  = 3;
   }
-  logic(data: CandleFinderData) {
+  logic(data: PatternFinderData) {
     let firstdaysOpen = data.open[0];
     let firstdaysClose = data.close[0];
     // let firstdaysHigh = data.high[0];
@@ -33,6 +33,7 @@ export default class MorningStar extends CandlestickFinder {
       thirddaysOpen > seconddaysHigh &&
       seconddaysClose < thirddaysOpen;
     let doesCloseAboveFirstMidpoint = thirddaysClose > firstdaysMidpoint;
+
     return (
       isFirstBearish &&
       isSmallBodyExists &&
@@ -43,6 +44,6 @@ export default class MorningStar extends CandlestickFinder {
   }
 }
 
-export function morningStar(data: CandleFinderData) {
+export function morningStar(data: PatternFinderData) {
   return new MorningStar().getAllPatternIndex(data);
 }

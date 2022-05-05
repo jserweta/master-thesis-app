@@ -1,11 +1,11 @@
-import CandleFinderData from "./CandleFinderData";
+import { PatternFinderData } from "../interfaces/patternFinderData";
 
 export default class CandlestickFinder {
-  requiredCount: number;
-  name: string;
+  finderRequiredCount: number;
+  finderName: string;
   constructor(requiredCount: number, name: string) {
-    this.requiredCount = requiredCount;
-    this.name = name;
+    this.finderRequiredCount = requiredCount;
+    this.finderName = name;
   }
   approximateEqual(a: number, b: number): boolean {
     let left = parseFloat(Math.abs(a - b).toPrecision(4)) * 1;
@@ -13,14 +13,14 @@ export default class CandlestickFinder {
     return left <= right;
   }
 
-  logic(data: CandleFinderData): boolean {
+  logic(data: PatternFinderData): boolean {
     throw Object.assign(new Error("Implement in specific pattern!"));
   }
-  getAllPatternIndex(data: CandleFinderData) {
-    if (data.close.length < this.requiredCount) {
+  getAllPatternIndex(data: PatternFinderData) {
+    if (data.close.length < this.finderRequiredCount) {
       console.warn(
         "Data count less than data required for the strategy!",
-        this.name
+        this.finderName
       );
       return [];
     }
@@ -40,11 +40,11 @@ export default class CandlestickFinder {
       });
   }
 
-  hasPattern(data: CandleFinderData) {
-    if (data.close.length < this.requiredCount) {
+  hasPattern(data: PatternFinderData) {
+    if (data.close.length < this.finderRequiredCount) {
       console.warn(
         "Data count less than data required for the strategy!",
-        this.name
+        this.finderName
       );
       return false;
     }
@@ -58,8 +58,8 @@ export default class CandlestickFinder {
     return strategyFn.call(this, this._getLastDataForCandleStick(data));
   }
 
-  protected _getLastDataForCandleStick(data: CandleFinderData) {
-    let requiredCount = this.requiredCount;
+  protected _getLastDataForCandleStick(data: PatternFinderData) {
+    let requiredCount = this.finderRequiredCount;
     if (data.close.length === requiredCount) {
       return data;
     } else {
@@ -68,7 +68,7 @@ export default class CandlestickFinder {
         high: [],
         low: [],
         close: [],
-      } as CandleFinderData;
+      } as PatternFinderData;
       let i = 0;
       let index = data.close.length - requiredCount;
       while (i < requiredCount) {
@@ -82,8 +82,8 @@ export default class CandlestickFinder {
     }
   }
 
-  protected _generateDataForCandleStick(data: CandleFinderData) {
-    let requiredCount = this.requiredCount;
+  protected _generateDataForCandleStick(data: PatternFinderData) {
+    let requiredCount = this.finderRequiredCount;
     let generatedData = data.close
       .map(function (currentData: any, index: number) {
         let i = 0;
@@ -92,7 +92,7 @@ export default class CandlestickFinder {
           high: [],
           low: [],
           close: [],
-        } as CandleFinderData;
+        } as PatternFinderData;
         while (i < requiredCount) {
           returnVal.open.push(data.open[index + i]);
           returnVal.high.push(data.high[index + i]);

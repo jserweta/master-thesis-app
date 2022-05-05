@@ -1,4 +1,4 @@
-import CandleFinderData from "../CandleFinderData";
+import { PatternFinderData } from "../../interfaces/patternFinderData";
 import CandlestickFinder from "../CandlestickFinder";
 
 export default class BearishHammerStick extends CandlestickFinder {
@@ -7,7 +7,7 @@ export default class BearishHammerStick extends CandlestickFinder {
     // this.name = 'BearishHammerStick';
     // this.requiredCount  = 1;
   }
-  logic(data: CandleFinderData) {
+  logic(data: PatternFinderData) {
     let daysOpen = data.open[0];
     let daysClose = data.close[0];
     let daysHigh = data.high[0];
@@ -23,6 +23,6 @@ export default class BearishHammerStick extends CandlestickFinder {
   }
 }
 
-export function bearishHammerStick(data: CandleFinderData) {
+export function bearishHammerStick(data: PatternFinderData) {
   return new BearishHammerStick().getAllPatternIndex(data);
 }
