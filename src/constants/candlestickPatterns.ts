@@ -1,32 +1,46 @@
 const CANDLESTICK_PATTERNS = [
   {
+    name: "Bullish hammer stick",
+    active: false,
+  },
+  {
     name: "Doji",
-    function: "doji",
     active: false,
   },
   {
-    name: "Abandoned Baby",
+    name: "Morning star",
     active: false,
   },
   {
-    name: "Bearish Engulfing Pattern",
-    active: false,
-  },
-
-  {
-    name: "Bullish Hammer",
+    name: "Evening star",
     active: false,
   },
   {
-    name: "Bearish Hammer",
+    name: "Dark cloud cover",
     active: false,
   },
   {
-    name: "Hanging Man",
+    name: "Three black crows",
     active: false,
   },
   {
-    name: "Tweezer Top",
+    name: "Three white soldiers",
+    active: false,
+  },
+  {
+    name: "Bearish hammer stick",
+    active: false,
+  },
+  {
+    name: "Bearish harami",
+    active: false,
+  },
+  {
+    name: "Bearish inverted hammer stick",
+    active: false,
+  },
+  {
+    name: "Bearish spinning top",
     active: false,
   },
 ];

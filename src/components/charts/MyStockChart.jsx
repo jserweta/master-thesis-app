@@ -15,7 +15,8 @@ import brandDark from "highcharts/themes/brand-dark";
 
 import HighchartsReact from "highcharts-react-official";
 import { getDataSelectedOnChart } from "../../helpers/preparePatternDetectionData";
-import { doji } from "../../logic/candlestickPatterns/Doji";
+
+import * as Patterns from "../../logic/candlestickPatterns/index";
 
 indicatorsAll(Highcharts);
 annotationsAdvanced(Highcharts);
@@ -90,22 +91,69 @@ const MyStockChart = ({ financialData, patternDetection }) => {
   };
 
   const findCandlestickPattern = function (dataMin, dataMax) {
-    switch (selectedPattern.current.function) {
-      case "doji":
-        const displayedData = getDataSelectedOnChart(
-          financialData.ohlcData,
-          dataMin, // chart.xAxis[0].min,
-          dataMax //chart.xAxis[0].max
-        );
+    let addFlags = false;
+    let patternIndexes;
+    const displayedData = getDataSelectedOnChart(
+      financialData.ohlcData,
+      dataMin, // chart.xAxis[0].min,
+      dataMax //chart.xAxis[0].max
+    );
 
-        const patternIndexes = doji(displayedData);
-        addFlagsToChart(patternIndexes, displayedData, "Doji");
-
+    switch (selectedPattern.current.name) {
+      case "Doji":
+        patternIndexes = Patterns.doji(displayedData);
+        addFlags = true;
         break;
-
+      case "Morning star":
+        patternIndexes = Patterns.morningStar(displayedData);
+        addFlags = true;
+        break;
+      case "Evening star":
+        patternIndexes = Patterns.eveningStar(displayedData);
+        addFlags = true;
+        break;
+      case "Bullish hammer stick":
+        patternIndexes = Patterns.bullishHammerStick(displayedData);
+        addFlags = true;
+        break;
+      case "Bearish hammer stick":
+        patternIndexes = Patterns.bearishHammerStick(displayedData);
+        addFlags = true;
+        break;
+      case "Dark cloud cover":
+        patternIndexes = Patterns.darkCloudCover(displayedData);
+        addFlags = true;
+        break;
+      case "Three black crows":
+        patternIndexes = Patterns.threeBlackCrows(displayedData);
+        addFlags = true;
+        break;
+      case "Three white soldiers":
+        patternIndexes = Patterns.threeWhiteSoldiers(displayedData);
+        addFlags = true;
+        break;
+      case "Bearish harami":
+        patternIndexes = Patterns.bearishHarami(displayedData);
+        addFlags = true;
+        break;
+      case "Bearish inverted hammer stick":
+        patternIndexes = Patterns.bearishInvertedHammerStick(displayedData);
+        addFlags = true;
+        break;
+      case "Bearish spinning top":
+        patternIndexes = Patterns.bearishSpinningTop(displayedData);
+        addFlags = true;
+        break;
       default:
+        addFlags = false;
         clearFlagsData();
     }
+    addFlags &&
+      addFlagsToChart(
+        patternIndexes,
+        displayedData,
+        selectedPattern.current.name
+      );
   };
 
   const [stockChartOptions] = useState({
@@ -287,7 +335,7 @@ const MyStockChart = ({ financialData, patternDetection }) => {
   useEffect(() => {
     if (Object.keys(patternDetection).length !== 0) {
       selectedPattern.current = patternDetection;
-      console.log(selectedPattern.current);
+      clearFlagsData();
     }
 
     if (stockChartComponent.current.chart !== null) {
