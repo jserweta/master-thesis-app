@@ -1,37 +1,34 @@
 import { PatternFinderData } from "../../interfaces/patternFinderData";
-import CandlestickFinder from "../CandlestickFinder";
+import CandlestickPatternFinder from "../CandlestickPatternFinder";
 
-export default class DarkCloudCover extends CandlestickFinder {
-  // name = "DarkCloudCover";
-  // requiredCount = 2;
-  constructor(requiredCount: number, name: string) {
-    super(2, "DarkCloudCover");
-    // this.requiredCount = requiredCount;
-    // name = "DarkCloudCover";
+export default class DarkCloudCover extends CandlestickPatternFinder {
+  patternName: string;
+  patternRequiredCandleCount: number;
+  constructor() {
+    super();
+    this.patternName = "DarkCloudCover";
+    this.patternRequiredCandleCount = 2;
   }
 
-  logic(data: PatternFinderData) {
-    let firstdaysOpen = data.open[0];
-    let firstdaysClose = data.close[0];
-    let firstdaysHigh = data.high[0];
-    // let firstdaysLow    = data.low[0]
-    let seconddaysOpen = data.open[1];
-    let seconddaysClose = data.close[1];
-    // let seconddaysHigh  = data.high[1];
-    // let seconddaysLow   = data.low[1]
+  patternLogic(data: PatternFinderData) {
+    let openFirst = data.open[0];
+    let closeFirst = data.close[0];
+    let highFirst = data.high[0];
+    let openSecond = data.open[1];
+    let closeSecond = data.close[1];
 
-    let firstdayMidpoint = (firstdaysClose + firstdaysOpen) / 2;
-    let isFirstBullish = firstdaysClose > firstdaysOpen;
-    let isSecondBearish = seconddaysClose < seconddaysOpen;
+    let midpointFirst = (closeFirst + openFirst) / 2;
+    let isFirstBullish = closeFirst > openFirst;
+    let isSecondBearish = closeSecond < openSecond;
     let isDarkCloudPattern =
-      seconddaysOpen > firstdaysHigh &&
-      seconddaysClose < firstdayMidpoint &&
-      seconddaysClose > firstdaysOpen;
+      openSecond > highFirst &&
+      closeSecond < midpointFirst &&
+      closeSecond > openFirst;
 
     return isFirstBullish && isSecondBearish && isDarkCloudPattern;
   }
 }
 
 export function darkCloudCover(data: PatternFinderData) {
-  return new DarkCloudCover(2, "DarkCloudCover").getAllPatternIndex(data);
+  return new DarkCloudCover().getAllPatternIndex(data);
 }

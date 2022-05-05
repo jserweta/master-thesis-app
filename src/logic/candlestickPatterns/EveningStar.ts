@@ -1,44 +1,42 @@
 import { PatternFinderData } from "../../interfaces/patternFinderData";
-import CandlestickFinder from "../CandlestickFinder";
+import CandlestickPatternFinder from "../CandlestickPatternFinder";
 
-export default class EveningStar extends CandlestickFinder {
+export default class EveningStar extends CandlestickPatternFinder {
+  patternName: string;
+  patternRequiredCandleCount: number;
   constructor() {
-    super(3, "EveningStar");
-    // this.name = ;
-    // this.requiredCount  = 3;
+    super();
+    this.patternName = "EveningStar";
+    this.patternRequiredCandleCount = 3;
   }
-  logic(data: PatternFinderData) {
-    let firstdaysOpen = data.open[0];
-    let firstdaysClose = data.close[0];
-    let firstdaysHigh = data.high[0];
-    // let firstdaysLow = data.low[0];
-    // let seconddaysOpen = data.open[1];
-    let seconddaysClose = data.close[1];
-    let seconddaysHigh = data.high[1];
-    let seconddaysLow = data.low[1];
-    let thirddaysOpen = data.open[2];
-    let thirddaysClose = data.close[2];
-    // let thirddaysHigh = data.high[2];
-    // let thirddaysLow = data.low[2];
+  patternLogic(data: PatternFinderData) {
+    let openFirst = data.open[0];
+    let closeFirst = data.close[0];
+    let highFirst = data.high[0];
+    let closeSecond = data.close[1];
+    let highSecond = data.high[1];
+    let lowSecond = data.low[1];
+    let openThird = data.open[2];
+    let closeThird = data.close[2];
 
-    let firstdaysMidpoint = (firstdaysOpen + firstdaysClose) / 2;
-    let isFirstBullish = firstdaysClose > firstdaysOpen;
-    let isSmallBodyExists =
-      firstdaysHigh < seconddaysLow && firstdaysHigh < seconddaysHigh;
-    let isThirdBearish = thirddaysOpen > thirddaysClose;
+    let midpointFirst = (openFirst + closeFirst) / 2;
+    let isFirstBullish = closeFirst > openFirst;
+    let isSmallBodyExists = highFirst < lowSecond && highFirst < highSecond;
+    let isThirdBearish = openThird > closeThird;
 
     let gapExists =
-      seconddaysHigh > firstdaysHigh &&
-      seconddaysLow > firstdaysHigh &&
-      thirddaysOpen < seconddaysLow &&
-      seconddaysClose > thirddaysOpen;
-    let doesCloseBelowFirstMidpoint = thirddaysClose < firstdaysMidpoint;
+      highSecond > highFirst &&
+      lowSecond > highFirst &&
+      openThird < lowSecond &&
+      closeSecond > openThird;
+    let isCloseBelowFirstMidpoint = closeThird < midpointFirst;
+
     return (
       isFirstBullish &&
       isSmallBodyExists &&
       gapExists &&
       isThirdBearish &&
-      doesCloseBelowFirstMidpoint
+      isCloseBelowFirstMidpoint
     );
   }
 }

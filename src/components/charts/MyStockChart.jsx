@@ -144,6 +144,18 @@ const MyStockChart = ({ financialData, patternDetection, companyName }) => {
         patternIndexes = Patterns.bearishSpinningTop(displayedData);
         addFlags = true;
         break;
+      case "Bullish spinning top":
+        patternIndexes = Patterns.bullishSpinningTop(displayedData);
+        addFlags = true;
+        break;
+      case "Bullish inverted hammer stick":
+        patternIndexes = Patterns.bullishInvertedHammerStick(displayedData);
+        addFlags = true;
+        break;
+      case "Bullish harami":
+        patternIndexes = Patterns.bullishHarami(displayedData);
+        addFlags = true;
+        break;
       default:
         addFlags = false;
         clearFlagsData();

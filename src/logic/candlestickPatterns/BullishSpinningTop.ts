@@ -1,12 +1,12 @@
 import { PatternFinderData } from "../../interfaces/patternFinderData";
 import CandlestickPatternFinder from "../CandlestickPatternFinder";
 
-export default class BearishSpinningTop extends CandlestickPatternFinder {
+export default class BullishSpinningTop extends CandlestickPatternFinder {
   patternName: string;
   patternRequiredCandleCount: number;
   constructor() {
     super();
-    this.patternName = "BearishSpinningTop";
+    this.patternName = "BullishSpinningTop";
     this.patternRequiredCandleCount = 1;
   }
   patternLogic(data: PatternFinderData) {
@@ -16,15 +16,15 @@ export default class BearishSpinningTop extends CandlestickPatternFinder {
     let low = data.low[0];
 
     let bodyLength = Math.abs(close - open);
-    let upperShadowLength = Math.abs(high - open);
-    let lowerShadowLength = Math.abs(high - low);
-    let isBearishSpinningTop =
+    let upperShadowLength = Math.abs(high - close);
+    let lowerShadowLength = Math.abs(open - low);
+    let isBullishSpinningTop =
       bodyLength < upperShadowLength && bodyLength < lowerShadowLength;
 
-    return isBearishSpinningTop;
+    return isBullishSpinningTop;
   }
 }
 
-export function bearishSpinningTop(data: PatternFinderData) {
-  return new BearishSpinningTop().getAllPatternIndex(data);
+export function bullishSpinningTop(data: PatternFinderData) {
+  return new BullishSpinningTop().getAllPatternIndex(data);
 }

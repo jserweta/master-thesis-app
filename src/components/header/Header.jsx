@@ -5,7 +5,7 @@ import agh from "../../assets/img/agh-logo.png";
 export const Header = () => {
   return (
     <header className="header">
-      Stock market analysis portal
+      <h1>Stock market analysis portal</h1>
       <img src={agh} alt="AGH logo" />
     </header>
   );

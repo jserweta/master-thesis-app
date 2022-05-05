@@ -1,38 +1,36 @@
 import { PatternFinderData } from "../../interfaces/patternFinderData";
-import CandlestickFinder from "../CandlestickFinder";
+import CandlestickPatternFinder from "../CandlestickPatternFinder";
 
-export default class ThreeWhiteSoldiers extends CandlestickFinder {
+export default class ThreeWhiteSoldiers extends CandlestickPatternFinder {
+  patternName: string;
+  patternRequiredCandleCount: number;
   constructor() {
-    super(3, "ThreeWhiteSoldiers");
-    // this.name = "ThreeWhiteSoldiers";
-    // this.requiredCount = 3;
+    super();
+    this.patternName = "ThreeWhiteSoldiers";
+    this.patternRequiredCandleCount = 3;
   }
-  logic(data: PatternFinderData) {
-    let firstdaysOpen = data.open[0];
-    let firstdaysClose = data.close[0];
-    let firstdaysHigh = data.high[0];
-    // let firstdaysLow    = data.low[0]
-    let seconddaysOpen = data.open[1];
-    let seconddaysClose = data.close[1];
-    let seconddaysHigh = data.high[1];
-    // let seconddaysLow   = data.low[1]
-    let thirddaysOpen = data.open[2];
-    let thirddaysClose = data.close[2];
-    let thirddaysHigh = data.high[2];
-    // let thirddaysLow    = data.low[2];
+  patternLogic(data: PatternFinderData) {
+    let openFirst = data.open[0];
+    let closeFirst = data.close[0];
+    let highFirst = data.high[0];
+    let openSecond = data.open[1];
+    let closeSecond = data.close[1];
+    let highSecond = data.high[1];
+    let openThird = data.open[2];
+    let closeThird = data.close[2];
+    let highThird = data.high[2];
 
-    let isUpTrend =
-      seconddaysHigh > firstdaysHigh && thirddaysHigh > seconddaysHigh;
+    let isUpTrend = highSecond > highFirst && highThird > highSecond;
     let isAllBullish =
-      firstdaysOpen < firstdaysClose &&
-      seconddaysOpen < seconddaysClose &&
-      thirddaysOpen < thirddaysClose;
+      openFirst < closeFirst &&
+      openSecond < closeSecond &&
+      openThird < closeThird;
 
     let doesOpenWithinPreviousBody =
-      firstdaysClose > seconddaysOpen &&
-      seconddaysOpen < firstdaysHigh &&
-      seconddaysHigh > thirddaysOpen &&
-      thirddaysOpen < seconddaysClose;
+      closeFirst > openSecond &&
+      openSecond < highFirst &&
+      highSecond > openThird &&
+      openThird < closeSecond;
 
     return isUpTrend && isAllBullish && doesOpenWithinPreviousBody;
   }

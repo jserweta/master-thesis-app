@@ -1,23 +1,24 @@
 import { PatternFinderData } from "../../interfaces/patternFinderData";
-import CandlestickFinder from "../CandlestickFinder";
+import CandlestickPatternFinder from "../CandlestickPatternFinder";
 
-export default class BearishHammerStick extends CandlestickFinder {
+export default class BearishHammerStick extends CandlestickPatternFinder {
+  patternName: string;
+  patternRequiredCandleCount: number;
   constructor() {
-    super(1, "BearishHammerStick");
-    // this.name = 'BearishHammerStick';
-    // this.requiredCount  = 1;
+    super();
+    this.patternName = "BearishHammerStick";
+    this.patternRequiredCandleCount = 1;
   }
-  logic(data: PatternFinderData) {
-    let daysOpen = data.open[0];
-    let daysClose = data.close[0];
-    let daysHigh = data.high[0];
-    let daysLow = data.low[0];
 
-    let isBearishHammer = daysOpen > daysClose;
-    isBearishHammer =
-      isBearishHammer && this.approximateEqual(daysOpen, daysHigh);
-    isBearishHammer =
-      isBearishHammer && daysOpen - daysClose <= 2 * (daysClose - daysLow);
+  patternLogic(data: PatternFinderData) {
+    let open = data.open[0];
+    let close = data.close[0];
+    let high = data.high[0];
+    let low = data.low[0];
+
+    let isBearishHammer = open > close;
+    isBearishHammer = isBearishHammer && this.approximateEqual(open, high);
+    isBearishHammer = isBearishHammer && open - close <= 2 * (close - low);
 
     return isBearishHammer;
   }

@@ -1,20 +1,24 @@
 import { PatternFinderData } from "../../interfaces/patternFinderData";
-import CandlestickFinder from "../CandlestickFinder";
+import CandlestickPatternFinder from "../CandlestickPatternFinder";
 
-export default class Doji extends CandlestickFinder {
+export default class Doji extends CandlestickPatternFinder {
+  patternName: string;
+  patternRequiredCandleCount: number;
   constructor() {
-    super(1, "Doji");
+    super();
+    this.patternName = "Doji";
+    this.patternRequiredCandleCount = 1;
   }
-  logic(data: PatternFinderData): boolean {
-    let daysOpen = data.open[0];
-    let daysClose = data.close[0];
-    let daysHigh = data.high[0];
-    let daysLow = data.low[0];
-    let isOpenEqualsClose = this.approximateEqual(daysOpen, daysClose);
+  patternLogic(data: PatternFinderData): boolean {
+    let open = data.open[0];
+    let close = data.close[0];
+    let high = data.high[0];
+    let low = data.low[0];
+    let isOpenEqualsClose = this.approximateEqual(open, close);
     let isHighEqualsOpen =
-      isOpenEqualsClose && this.approximateEqual(daysOpen, daysHigh);
+      isOpenEqualsClose && this.approximateEqual(open, high);
     let isLowEqualsClose =
-      isOpenEqualsClose && this.approximateEqual(daysClose, daysLow);
+      isOpenEqualsClose && this.approximateEqual(close, low);
     return isOpenEqualsClose && isHighEqualsOpen === isLowEqualsClose;
   }
 }
