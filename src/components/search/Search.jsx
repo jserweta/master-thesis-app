@@ -21,8 +21,8 @@ const Search = () => {
     response = prepareSearchData(res.data);
   }
 
-  const clickedListItem = (symbol) => {
-    setSelectedCompanyData(symbol);
+  const clickedListItem = (selectedItem) => {
+    setSelectedCompanyData(selectedItem);
   };
 
   return (

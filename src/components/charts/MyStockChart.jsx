@@ -28,7 +28,7 @@ exporting(Highcharts);
 stockTools(Highcharts);
 brandDark(Highcharts);
 
-const MyStockChart = ({ financialData, patternDetection }) => {
+const MyStockChart = ({ financialData, patternDetection, companyName }) => {
   let stockChartComponent = useRef(null);
   let selectedPattern = useRef({});
 
@@ -163,7 +163,7 @@ const MyStockChart = ({ financialData, patternDetection }) => {
       // width: 1000,
     },
     title: {
-      text: `${financialData.metaData[1]} Stock Price`,
+      text: `${companyName} stock price`,
     },
     credits: {
       enabled: false,

@@ -5,7 +5,7 @@ const SearchListItem = ({ itemData, itemClick }) => {
   return (
     <div
       className="searchContainer__searchListItem"
-      onClick={() => itemClick(itemData.symbol)}
+      onClick={() => itemClick(itemData)}
     >
       <div className="itemWrapper">
         <h4>{itemData.name}</h4>
