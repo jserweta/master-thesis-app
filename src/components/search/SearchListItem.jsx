@@ -1,10 +1,11 @@
 import React from "react";
+import "./search.scss";
 
 const SearchListItem = ({ itemData, itemClick }) => {
   return (
     <div
-      className="searchContainer__searchItem"
-      onClick={() => itemClick(itemData.symbol)}
+      className="searchContainer__searchListItem"
+      onClick={() => itemClick(itemData)}
     >
       <div className="itemWrapper">
         <h4>{itemData.name}</h4>

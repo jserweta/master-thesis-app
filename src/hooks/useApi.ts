@@ -2,7 +2,7 @@ import { useReducer, useEffect } from "react";
 import { doFetch } from "../actions";
 import { apiReducer } from "../reducers/apiReducer";
 
-export const useApi = (path) => {
+export const useApi = (path: string) => {
   const [response, dispatch] = useReducer(apiReducer, {
     data: null,
     isLoading: true,

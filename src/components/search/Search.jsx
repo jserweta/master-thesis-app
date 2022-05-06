@@ -3,7 +3,7 @@ import { ReactComponent as SearchIcon } from "../../assets/img/search-icon.svg";
 import { useApi } from "../../hooks/useApi";
 import ReactLoading from "react-loading";
 import LoadingError from "../loadingError/LoadingError";
-import { prepareSearchData } from "../../helpers/prepareData";
+import { prepareSearchData } from "../../helpers/prepareDataFromApi";
 import { ChartContext } from "../../context/ChartContext";
 import "./search.scss";
 import SearchListItem from "./SearchListItem";
@@ -16,17 +16,14 @@ const Search = () => {
   const [searchKeywords, setSearchKeywords] = useState("");
   const res = useApi(`function=SYMBOL_SEARCH&keywords=${searchKeywords}`);
 
-  // console.log(res);
-
   let response;
   if (!res.isLoading && res.error == null) {
     response = prepareSearchData(res.data);
   }
 
-  const clickedListItem = (symbol) => {
-    setSelectedCompanyData(symbol);
+  const clickedListItem = (selectedItem) => {
+    setSelectedCompanyData(selectedItem);
   };
-  // console.log(response);
 
   return (
     <div className="searchContainer">
@@ -52,6 +49,12 @@ const Search = () => {
         {res.error && searchKeywords !== "" && (
           <div className="loadingErrorWrapper">
             <LoadingError message={`Oops! There are no matching results :(`} />
+          </div>
+        )}
+
+        {!res.isLoading && searchKeywords === "" && (
+          <div className="loadingErrorWrapper">
+            <LoadingError message={`Type in something ;)`} />
           </div>
         )}
 

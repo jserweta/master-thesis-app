@@ -1,0 +1,2 @@
+*.ts linguist-language=JavaScript linguist-detectable=true
+*.jsx linguist-language=JavaScript linguist-detectable=true

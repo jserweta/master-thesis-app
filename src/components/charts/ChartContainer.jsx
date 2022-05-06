@@ -5,13 +5,24 @@ import ReactLoading from "react-loading";
 import LoadingError from "../loadingError/LoadingError";
 import { ChartContext } from "../../context/ChartContext";
 import "./charts.scss";
-import { prepareChartData } from "../../helpers/prepareData";
+import { prepareChartData } from "../../helpers/prepareDataFromApi";
 
 function ChartContainer() {
-  const { selectedCompanyData } = useContext(ChartContext);
-  const symbol = selectedCompanyData !== "" ? selectedCompanyData : "GOOG";
+  const { selectedCompanyData, selectedCandlestickPattern } =
+    useContext(ChartContext);
+
+  const companySymbol =
+    Object.keys(selectedCompanyData).length !== 0
+      ? selectedCompanyData.symbol
+      : "GOOG";
+
+  const companyName =
+    Object.keys(selectedCompanyData).length !== 0
+      ? selectedCompanyData.name
+      : "Alphabet Inc - Class C";
+
   const res = useApi(
-    `function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full`
+    `function=TIME_SERIES_DAILY&symbol=${companySymbol}&outputsize=full`
   );
 
   let response;
@@ -37,7 +48,11 @@ function ChartContainer() {
       )}
 
       {!res.isLoading && res.data !== null && res.error == null && (
-        <MyStockChart financialData={response} />
+        <MyStockChart
+          financialData={response}
+          patternDetection={selectedCandlestickPattern}
+          companyName={companyName}
+        />
       )}
     </div>
   );
