@@ -17,11 +17,31 @@ const CANDLESTICK_PATTERNS = [
     active: false,
   },
   {
+    name: "Bullish harami cross",
+    active: false,
+  },
+  {
     name: "Morning star",
     active: false,
   },
   {
     name: "Three white soldiers",
+    active: false,
+  },
+  {
+    name: "Dragonfly doji",
+    active: false,
+  },
+  {
+    name: "Morning doji star",
+    active: false,
+  },
+  {
+    name: "Bullish engulfing",
+    active: false,
+  },
+  {
+    name: "Piercing line",
     active: false,
   },
 
@@ -30,10 +50,10 @@ const CANDLESTICK_PATTERNS = [
     name: "Doji",
     active: false,
   },
-  {
-    name: "Dark cloud cover",
-    active: false,
-  },
+  // {
+  //   name: "Abandoned baby",
+  //   active: false,
+  // },
 
   //Bearish patterns
   {
@@ -53,11 +73,31 @@ const CANDLESTICK_PATTERNS = [
     active: false,
   },
   {
+    name: "Bearish harami cross",
+    active: false,
+  },
+  {
     name: "Evening star",
     active: false,
   },
   {
     name: "Three black crows",
+    active: false,
+  },
+  {
+    name: "Dark cloud cover",
+    active: false,
+  },
+  {
+    name: "Gravestone doji",
+    active: false,
+  },
+  {
+    name: "Evening doji star",
+    active: false,
+  },
+  {
+    name: "Bearish engulfing",
     active: false,
   },
 ];

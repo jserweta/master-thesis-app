@@ -136,6 +136,10 @@ const MyStockChart = ({ financialData, patternDetection, companyName }) => {
         patternIndexes = Patterns.bearishHarami(displayedData);
         addFlags = true;
         break;
+      case "Bearish harami cross":
+        patternIndexes = Patterns.bearishHaramiCross(displayedData);
+        addFlags = true;
+        break;
       case "Bearish inverted hammer stick":
         patternIndexes = Patterns.bearishInvertedHammerStick(displayedData);
         addFlags = true;
@@ -154,6 +158,42 @@ const MyStockChart = ({ financialData, patternDetection, companyName }) => {
         break;
       case "Bullish harami":
         patternIndexes = Patterns.bullishHarami(displayedData);
+        addFlags = true;
+        break;
+      case "Bullish harami cross":
+        patternIndexes = Patterns.bullishHaramiCross(displayedData);
+        addFlags = true;
+        break;
+      // case "Abandoned baby":
+      //   patternIndexes = Patterns.abandonedBaby(displayedData);
+      //   addFlags = true;
+      //   break;
+      case "Dragonfly doji":
+        patternIndexes = Patterns.dragonflyDoji(displayedData);
+        addFlags = true;
+        break;
+      case "Gravestone doji":
+        patternIndexes = Patterns.gravestoneDoji(displayedData);
+        addFlags = true;
+        break;
+      case "Morning doji star":
+        patternIndexes = Patterns.morningDojiStar(displayedData);
+        addFlags = true;
+        break;
+      case "Evening doji star":
+        patternIndexes = Patterns.eveningDojiStar(displayedData);
+        addFlags = true;
+        break;
+      case "Bullish engulfing":
+        patternIndexes = Patterns.bullishEngulfing(displayedData);
+        addFlags = true;
+        break;
+      case "Bearish engulfing":
+        patternIndexes = Patterns.bearishEngulfing(displayedData);
+        addFlags = true;
+        break;
+      case "Piercing line":
+        patternIndexes = Patterns.piercingLine(displayedData);
         addFlags = true;
         break;
       default:
