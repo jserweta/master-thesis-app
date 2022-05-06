@@ -30,45 +30,45 @@ export default abstract class CandlestickPatternFinder {
       });
   }
 
-  // hasPattern(data: PatternFinderData) {
-  //   if (data.close.length < this.patternRequiredCandleCount) {
-  //     console.warn(
-  //       "Data count less than data required for the strategy!",
-  //       this.patternName
-  //     );
-  //     return false;
-  //   }
-  //   if (data.reversedInput) {
-  //     data.open.reverse();
-  //     data.high.reverse();
-  //     data.low.reverse();
-  //     data.close.reverse();
-  //   }
-  //   let patternLogicFn = this.logic;
-  //   return patternLogicFn.call(this, this._getLastDataForCandleStick(data));
-  // }
+  hasPattern(data: PatternFinderData) {
+    if (data.close.length < this.patternRequiredCandleCount) {
+      console.warn(
+        "This pattern detection function requires more data!",
+        this.patternName
+      );
+      return false;
+    }
+    if (data.reversedInput) {
+      data.open.reverse();
+      data.high.reverse();
+      data.low.reverse();
+      data.close.reverse();
+    }
+    let patternLogicFn = this.patternLogic;
+    return patternLogicFn.call(this, this._getDataForSpecificCandleStick(data));
+  }
 
-  // protected _getLastDataForCandleStick(data: PatternFinderData) {
-  //   let patternRequiredCandleCount = this.patternRequiredCandleCount;
-  //   if (data.close.length === patternRequiredCandleCount) {
-  //     return data;
-  //   } else {
-  //     let returnVal = {
-  //       open: [],
-  //       high: [],
-  //       low: [],
-  //       close: [],
-  //     } as PatternFinderData;
-  //     let index = data.close.length - patternRequiredCandleCount;
-  //     for (let i = 0; i < patternRequiredCandleCount; i++) {
-  //       returnVal.open.push(data.open[index + i]);
-  //       returnVal.high.push(data.high[index + i]);
-  //       returnVal.low.push(data.low[index + i]);
-  //       returnVal.close.push(data.close[index + i]);
-  //     }
-  //     return returnVal;
-  //   }
-  // }
+  protected _getDataForSpecificCandleStick(data: PatternFinderData) {
+    let patternRequiredCandleCount = this.patternRequiredCandleCount;
+    if (data.close.length === patternRequiredCandleCount) {
+      return data;
+    } else {
+      let lastCandlestick = {
+        open: [],
+        high: [],
+        low: [],
+        close: [],
+      } as PatternFinderData;
+      let index = data.close.length - patternRequiredCandleCount;
+      for (let i = 0; i < patternRequiredCandleCount; i++) {
+        lastCandlestick.open.push(data.open[index + i]);
+        lastCandlestick.high.push(data.high[index + i]);
+        lastCandlestick.low.push(data.low[index + i]);
+        lastCandlestick.close.push(data.close[index + i]);
+      }
+      return lastCandlestick;
+    }
+  }
 
   protected _prepareDataForLogicFn(data: PatternFinderData) {
     let patternRequiredCandleCount = this.patternRequiredCandleCount;
