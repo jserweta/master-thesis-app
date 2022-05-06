@@ -1,6 +1,15 @@
 # Master Thesis App
 
 App created for my master thesis under the title "Stock market analysis portal".
+
+## How to run project
+
+The build folder is ready to be deployed.\
+You may serve it with a static server:
+
+npm install -g serve
+serve -s build
+
 ## Available Scripts
 
 In the project directory, you can run:
