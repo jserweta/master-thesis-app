@@ -1,11 +1,11 @@
 const CANDLESTICK_PATTERNS = [
   //Bullish patterns
   {
-    name: "Bullish hammer stick",
-    active: false,
+    name: "Bullish patterns",
+    type: "bullish",
   },
   {
-    name: "Bullish spinning top",
+    name: "Bullish hammer stick",
     active: false,
   },
   {
@@ -44,24 +44,18 @@ const CANDLESTICK_PATTERNS = [
     name: "Piercing line",
     active: false,
   },
-
-  //Mid section
   {
-    name: "Doji",
+    name: "Bullish spinning top",
     active: false,
   },
-  // {
-  //   name: "Abandoned baby",
-  //   active: false,
-  // },
 
   //Bearish patterns
   {
-    name: "Bearish hammer stick",
-    active: false,
+    name: "Bearish patterns",
+    type: "bearish",
   },
   {
-    name: "Bearish spinning top",
+    name: "Bearish hammer stick",
     active: false,
   },
   {
@@ -100,6 +94,24 @@ const CANDLESTICK_PATTERNS = [
     name: "Bearish engulfing",
     active: false,
   },
+  {
+    name: "Bearish spinning top",
+    active: false,
+  },
+
+  //Other section
+  {
+    name: "Other",
+    type: "other",
+  },
+  {
+    name: "Doji",
+    active: false,
+  },
+  // {
+  //   name: "Abandoned baby",
+  //   active: false,
+  // },
 ];
 
 export { CANDLESTICK_PATTERNS };

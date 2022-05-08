@@ -7,7 +7,7 @@ App created for my master thesis under the title "Stock market analysis portal".
 The build folder is ready to be deployed.\
 You may serve it with a static server:
 
-npm install -g serve
+npm install -g serve\
 serve -s build
 
 ## Available Scripts

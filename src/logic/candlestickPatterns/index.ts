@@ -11,10 +11,6 @@ export { bullishEngulfing } from "./BullishEngulfing";
 export { piercingLine } from "./PiercingLine";
 export { bullishHaramiCross } from "./BullishHaramiCross";
 
-//Mid section
-export { doji } from "./Doji";
-// export { abandonedBaby } from "./AbandonedBaby";
-
 //Bearish patterns
 export { bearishHammerStick } from "./BearishHammerStick";
 export { bearishSpinningTop } from "./BearishSpinningTop";
@@ -27,3 +23,7 @@ export { gravestoneDoji } from "./GravestoneDoji";
 export { eveningDojiStar } from "./EveningDojiStar";
 export { bearishEngulfing } from "./BearishEngulfing";
 export { bearishHaramiCross } from "./BearishHaramiCross";
+
+//Other section
+export { doji } from "./Doji";
+// export { abandonedBaby } from "./AbandonedBaby";
