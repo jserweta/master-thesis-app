@@ -215,7 +215,7 @@ const MyStockChart = ({ financialData, patternDetection, companyName }) => {
       // width: 1000,
     },
     title: {
-      text: `${companyName} stock price`,
+      text: `${companyName}`,
     },
     credits: {
       enabled: false,
