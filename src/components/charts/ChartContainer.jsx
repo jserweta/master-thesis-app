@@ -14,12 +14,14 @@ function ChartContainer() {
   const companySymbol =
     Object.keys(selectedCompanyData).length !== 0
       ? selectedCompanyData.symbol
-      : "GOOG";
+      : "TSLA";
 
-  const companyName =
+  const companyData =
     Object.keys(selectedCompanyData).length !== 0
-      ? selectedCompanyData.name
-      : "Alphabet Inc - Class C";
+      ? {name: selectedCompanyData.name,
+      currency: selectedCompanyData.currency}
+      : {name: "Tesla Inc",
+        currency: "USD"};
 
   const res = useApi(
     `function=TIME_SERIES_DAILY&symbol=${companySymbol}&outputsize=full`
@@ -51,7 +53,7 @@ function ChartContainer() {
         <MyStockChart
           financialData={response}
           patternDetection={selectedCandlestickPattern}
-          companyName={companyName}
+          companyData={companyData}
         />
       )}
     </div>

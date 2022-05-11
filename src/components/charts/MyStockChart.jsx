@@ -28,7 +28,7 @@ exporting(Highcharts);
 stockTools(Highcharts);
 brandDark(Highcharts);
 
-const MyStockChart = ({ financialData, patternDetection, companyName }) => {
+const MyStockChart = ({ financialData, patternDetection, companyData }) => {
   let stockChartComponent = useRef(null);
   let selectedPattern = useRef({});
 
@@ -45,8 +45,23 @@ const MyStockChart = ({ financialData, patternDetection, companyName }) => {
     financialData.volumeData[key].volume,
   ]);
 
-  const currencyOptions = { style: "currency", currency: "USD" };
+  const currencyOptions = { style: "currency", currency: companyData.currency };
   const numberFormat = new Intl.NumberFormat("en-US", currencyOptions);
+
+  let currencyPrefix;
+  const currency_symbols = {
+    'USD': '$', // US Dollar
+    'EUR': '€', // Euro
+    'GBP': '£', // British Pound Sterling
+    'JPY': '¥', // Japanese Yen
+    'PLN': 'zł', // Polish Zloty
+};
+
+  if (currency_symbols[companyData.currency]!== undefined ) {
+    currencyPrefix = `${currency_symbols[companyData.currency]} `;
+  } else {
+    currencyPrefix = `${companyData.currency} `;
+  }
 
   // let groupingUnits = [
   //   ["day", [1]],
@@ -215,7 +230,7 @@ const MyStockChart = ({ financialData, patternDetection, companyName }) => {
       // width: 1000,
     },
     title: {
-      text: `${companyName}`,
+      text: `${companyData.name}`,
     },
     credits: {
       enabled: false,
@@ -343,10 +358,10 @@ const MyStockChart = ({ financialData, patternDetection, companyName }) => {
         // },
         type: "candlestick",
         id: "candlestickDataSeries", //`${financialData.metaData[1]}-ohlc`
-        name: `${financialData.metaData[1]} Stock Price`,
+        name: `${financialData.metaData[1]} stock price`,
         data: ohlcData,
         tooltip: {
-          valuePrefix: `$`,
+          valuePrefix: `${currencyPrefix}`,
         },
       },
       {
