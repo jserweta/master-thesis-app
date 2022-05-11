@@ -36,7 +36,7 @@ const CandlestickSelector = () => {
   return (
     <div className="candlestickSelectorContainer">
       <h3 className="sectionHeader">Select candlestick pattern</h3>
-      <div className="patternsList">
+      <div className="patternsList custom-scrollbar">
         {Object.keys(candlestickPatterns).map((key, index) => (
           <PatternListItem
             key={index}

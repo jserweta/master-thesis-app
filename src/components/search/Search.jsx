@@ -34,7 +34,7 @@ const Search = () => {
         />
       </div>
 
-      <div className="searchContainer__searchResults">
+      <div className="searchContainer__searchResults custom-scrollbar">
         {res.isLoading && (
           <div className="loadingErrorWrapper">
             <ReactLoading

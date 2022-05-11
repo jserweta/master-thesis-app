@@ -28,6 +28,27 @@ body {
   }
 }
 
+.custom-scrollbar{
+  overflow-y: scroll;
+  &::-webkit-scrollbar-track
+    {
+      border-radius: 10px;
+      background-color: transparent;
+    }
+    
+   &::-webkit-scrollbar
+    {
+      width: 5px;
+      background-color: transparent;
+    }
+    
+   &::-webkit-scrollbar-thumb
+    {
+      border-radius: 10px;
+      background-color: lighten($color-background, 15%);
+    }
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

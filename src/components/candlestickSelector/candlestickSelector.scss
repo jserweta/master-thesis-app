@@ -15,12 +15,12 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    // overflow-y: scroll;
+    // -ms-overflow-style: none; /* IE and Edge */
+    // scrollbar-width: none;
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
 
     &__patternItem {
       text-align: left;
