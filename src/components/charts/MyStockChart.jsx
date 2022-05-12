@@ -50,14 +50,14 @@ const MyStockChart = ({ financialData, patternDetection, companyData }) => {
 
   let currencyPrefix;
   const currency_symbols = {
-    'USD': '$', // US Dollar
-    'EUR': '€', // Euro
-    'GBP': '£', // British Pound Sterling
-    'JPY': '¥', // Japanese Yen
-    'PLN': 'zł', // Polish Zloty
-};
+    USD: "$", // US Dollar
+    EUR: "€", // Euro
+    GBP: "£", // British Pound Sterling
+    JPY: "¥", // Japanese Yen
+    PLN: "zł", // Polish Zloty
+  };
 
-  if (currency_symbols[companyData.currency]!== undefined ) {
+  if (currency_symbols[companyData.currency] !== undefined) {
     currencyPrefix = `${currency_symbols[companyData.currency]} `;
   } else {
     currencyPrefix = `${companyData.currency} `;
