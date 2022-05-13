@@ -1,13 +1,19 @@
-import { SearchDataFormat } from "../interfaces/apiSearchData";
-import { ChartDataFormat } from "../interfaces/apiChartsData";
-import { Company } from "../interfaces/company";
-import { OhlcItem } from "../interfaces/ohlcItem";
-import { VolumeItem } from "../interfaces/volumeItem";
+import { ApiSearchDataFormat } from "../interfaces/apiSearchDataFormat";
+import { ApiChartDataFormat } from "../interfaces/apiChartDataFormat";
+import { SearchData } from "../interfaces/searchData";
+import {
+  MetaData,
+  OhlcItem,
+  VolumeItem,
+  ChartData,
+} from "../interfaces/chartData";
 
-export const prepareSearchData = (response: SearchDataFormat) => {
-  let returnObj: Company[] = [];
+export const prepareSearchData = (
+  response: ApiSearchDataFormat
+): SearchData[] => {
+  let returnObj = [] as SearchData[];
   for (let key in response["bestMatches"]) {
-    let newCompany: Company = {
+    let newCompany: SearchData = {
       symbol: (response["bestMatches"][key] as any)["1. symbol"],
       name: (response["bestMatches"][key] as any)["2. name"],
       region: (response["bestMatches"][key] as any)["4. region"],
@@ -22,17 +28,15 @@ export const prepareSearchData = (response: SearchDataFormat) => {
   return returnObj;
 };
 
-export const prepareChartData = (response: ChartDataFormat) => {
-  let metaData = [];
-  let ohlcData = [];
-  let volumeData = [];
-  let returnObj = {};
+export const prepareChartData = (response: ApiChartDataFormat): ChartData => {
+  let metaData = {} as MetaData;
+  let ohlcData = [] as OhlcItem[];
+  let volumeData = [] as VolumeItem[];
+  let returnObj = {} as ChartData;
 
-  metaData.push(
-    response["Meta Data"]["1. Information"],
-    response["Meta Data"]["2. Symbol"],
-    response["Meta Data"]["3. Last Refreshed"]
-  );
+  metaData.information = response["Meta Data"]["1. Information"];
+  metaData.symbol = response["Meta Data"]["2. Symbol"];
+  metaData.lastRefresh = response["Meta Data"]["3. Last Refreshed"];
 
   for (let key in response["Time Series (Daily)"]) {
     let newOhlcEntry: OhlcItem = {
@@ -66,11 +70,10 @@ export const prepareChartData = (response: ChartDataFormat) => {
     return x.timestamp - y.timestamp;
   });
 
-  returnObj = {
-    metaData: metaData,
-    ohlcData: ohlcData,
-    volumeData: volumeData,
-  };
+  returnObj.metaData = metaData;
+  returnObj.ohlcData = ohlcData;
+  returnObj.volumeData = volumeData;
+
   return returnObj;
 };
 

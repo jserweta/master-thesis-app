@@ -1,4 +1,4 @@
-import { OhlcItem } from "../interfaces/ohlcItem";
+import { OhlcItem } from "../interfaces/chartData";
 
 export const getDataSelectedOnChart = (
   chartData: OhlcItem,
