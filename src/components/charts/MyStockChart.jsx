@@ -284,6 +284,11 @@ const MyStockChart = ({ financialData, patternDetection, companyData }) => {
         resize: {
           enabled: true,
         },
+        crosshair: {
+          label: {
+            enabled: true
+          }
+        }
       },
       {
         offset: 10,
