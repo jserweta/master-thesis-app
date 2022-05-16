@@ -227,7 +227,6 @@ const MyStockChart = ({ financialData, patternDetection, companyData }) => {
     chart: {
       height: 500,
       renderTo: "chartContainer",
-      // width: 1000,
     },
     title: {
       text: `${companyData.name}`,
@@ -358,7 +357,7 @@ const MyStockChart = ({ financialData, patternDetection, companyData }) => {
         // },
         type: "candlestick",
         id: "candlestickDataSeries", //`${financialData.metaData[1]}-ohlc`
-        name: `${financialData.metaData[1]} stock price`,
+        name: `${companyData.name} Stock price`,
         data: ohlcData,
         tooltip: {
           valuePrefix: `${currencyPrefix}`,
@@ -370,8 +369,8 @@ const MyStockChart = ({ financialData, patternDetection, companyData }) => {
         //   units: groupingUnits,
         // },
         type: "column",
-        id: `${financialData.metaData[1]}-volume`,
-        name: `${financialData.metaData[1]} Volume`,
+        id: `${companyData.name}-volume`,
+        name: `${companyData.name} Volume`,
         data: volumeData,
         yAxis: 1,
       },
