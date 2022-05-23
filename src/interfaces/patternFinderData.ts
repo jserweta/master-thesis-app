@@ -3,5 +3,4 @@ export interface PatternFinderData {
   high: number[];
   low: number[];
   close: number[];
-  reversedInput?: boolean;
 }
