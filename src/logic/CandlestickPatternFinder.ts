@@ -95,8 +95,8 @@ export default abstract class CandlestickPatternFinder {
   }
 
   approximateEqual(a: number, b: number): boolean {
-    let left = parseFloat(Math.abs(a - b).toPrecision(4)) * 1;
-    let right = parseFloat((a * 0.001).toPrecision(4)) * 1;
-    return left <= right;
+    let diff = parseFloat(Math.abs(a - b).toPrecision(4));
+    let eps = 0.5;
+    return diff <= eps;
   }
 }

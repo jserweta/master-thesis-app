@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from "react";
-import { doFetch } from "../actions";
+import { doFetch } from "../actions/doFetch";
 import { apiReducer } from "../reducers/apiReducer";
 
 export const useApi = (path: string) => {
