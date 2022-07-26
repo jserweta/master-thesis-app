@@ -2,24 +2,8 @@
 
 App created for my master thesis under the title "Stock market analysis portal".
 
-## How to run project
+Technologies used in this project are React.js with TypeScript and additional libraries e.g. Highcharts JS for charting.
 
-The build folder is ready to be deployed.\
-You may serve it with a static server:
-```npm
-npm install -g serve
-serve -s build
-```
-## Available Scripts
+## Screenshots
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://github.com/jserweta/plant-nursery-website/blob/main/src/assets/img/1-start-view.png" width="50%" >
