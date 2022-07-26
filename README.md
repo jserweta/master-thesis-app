@@ -6,4 +6,4 @@ Technologies used in this project are React.js with TypeScript and additional li
 
 ## Screenshots
 
-<img src="https://github.com/jserweta/plant-nursery-website/blob/main/src/assets/img/1-start-view.png" width="50%" >
+<img src="https://github.com/jserweta/plant-nursery-website/blob/develop/src/assets/img/1-start-view.png" width="50%" >
