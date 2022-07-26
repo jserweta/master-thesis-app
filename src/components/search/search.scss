@@ -29,14 +29,18 @@
     display: flex;
     flex-direction: column;
 
-    overflow-y: scroll;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    max-height: 500px;
+    max-height: calc(80vh / 2 - 41px);
     height: 100%;
+
+    // overflow-y: scroll;
+    // -ms-overflow-style: none; /* IE and Edge */
+    // scrollbar-width: none;
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
+   
+    // max-height: 500px;
+    // height: 100%;
 
     .loadingErrorWrapper {
       height: 100%;
@@ -45,7 +49,7 @@
       justify-content: center;
     }
   }
-  &__searchItem {
+  &__searchListItem {
     text-align: left;
     color: $color-white;
 

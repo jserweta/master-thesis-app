@@ -1,6 +1,6 @@
 @import "../../sass/variables";
 
-.chartContainer{
+.chartContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,14 +9,24 @@
   height: 500px;
   // border: 2px solid red;
 
-  .highcharts-arrow-up, .highcharts-arrow-down{
+  .highcharts-arrow-up,
+  .highcharts-arrow-down {
     background-color: $color-highchart-btn;
   }
 
   .highcharts-container {
     align-self: flex-start;
   }
-  .highcharts-background{
+  .highcharts-background {
     fill: transparent;
+  }
+  .tooltipPattern {
+    &__header {
+      font-weight: bold;
+      font-size: 13px;
+    }
+    &__category {
+      font-weight: bold;
+    }
   }
 }

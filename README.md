@@ -1,16 +1,9 @@
 # Master Thesis App
 
 App created for my master thesis under the title "Stock market analysis portal".
-## Available Scripts
 
-In the project directory, you can run:
+Technologies used in this project are React.js with TypeScript and additional libraries e.g. Highcharts JS for charting.
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://github.com/jserweta/master-thesis-app/blob/develop/src/assets/img/1-start-view.png" width="90%" >
