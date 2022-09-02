@@ -12,7 +12,7 @@ export { piercingLine } from "./PiercingLine";
 export { bullishHaramiCross } from "./BullishHaramiCross";
 
 //Bearish patterns
-export { bearishHammerStick } from "./BearishHammerStick";
+export { hangingMan } from "./HangingMan";
 export { bearishSpinningTop } from "./BearishSpinningTop";
 export { bearishInvertedHammerStick } from "./BearishInvertedHammerStick";
 export { bearishHarami } from "./BearishHarami";
