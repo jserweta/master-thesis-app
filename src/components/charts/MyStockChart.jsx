@@ -131,8 +131,8 @@ const MyStockChart = ({ financialData, patternDetection, companyData }) => {
         patternIndexes = Patterns.bullishHammerStick(displayedData);
         addFlags = true;
         break;
-      case "Bearish hammer stick":
-        patternIndexes = Patterns.bearishHammerStick(displayedData);
+      case "Hanging Man":
+        patternIndexes = Patterns.hangingMan(displayedData);
         addFlags = true;
         break;
       case "Dark cloud cover":
@@ -179,10 +179,6 @@ const MyStockChart = ({ financialData, patternDetection, companyData }) => {
         patternIndexes = Patterns.bullishHaramiCross(displayedData);
         addFlags = true;
         break;
-      // case "Abandoned baby":
-      //   patternIndexes = Patterns.abandonedBaby(displayedData);
-      //   addFlags = true;
-      //   break;
       case "Dragonfly doji":
         patternIndexes = Patterns.dragonflyDoji(displayedData);
         addFlags = true;

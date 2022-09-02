@@ -55,7 +55,7 @@ const CANDLESTICK_PATTERNS = [
     type: "bearish",
   },
   {
-    name: "Bearish hammer stick",
+    name: "Hanging Man",
     active: false,
   },
   {
