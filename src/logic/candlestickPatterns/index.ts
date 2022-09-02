@@ -26,4 +26,3 @@ export { bearishHaramiCross } from "./BearishHaramiCross";
 
 //Other section
 export { doji } from "./Doji";
-// export { abandonedBaby } from "./AbandonedBaby";
